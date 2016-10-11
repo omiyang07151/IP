@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
-use Common\Controller\BaseController;
 
-class PayController extends BaseController {
+class PayController extends HomeBaseController {
 
     public function success(){
         $this->display();

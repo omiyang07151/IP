@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
-use Common\Controller\BaseController;
 
-class DateController extends BaseController {
+class DateController extends HomeBaseController {
 
     public function index(){
         $this->display();

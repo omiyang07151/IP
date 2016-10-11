@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
-use Common\Controller\BaseController;
 
-class UserController extends BaseController {
+class UserController extends HomeBaseController {
 
     public function orderlist(){
         $this->display();

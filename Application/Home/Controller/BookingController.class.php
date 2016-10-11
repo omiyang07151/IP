@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
-use Common\Controller\BaseController;
 
-class BookingController extends BaseController {
+class BookingController extends HomeBaseController {
 
     public function index(){
         $this->display();

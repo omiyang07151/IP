@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Common\Controller\BaseController;
-class IndexController extends BaseController {
+
+class IndexController extends HomeBaseController {
     public function index(){
         $this->display();
     }
