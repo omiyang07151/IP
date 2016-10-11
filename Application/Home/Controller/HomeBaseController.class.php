@@ -4,9 +4,27 @@ use Common\Controller\BaseController;
 
 class HomeBaseController extends BaseController{
 
+    protected $access_token_path;
+    protected $jsapi_ticket_path;
+    private $appId;
+    private $appSecret;
+    protected $partnerId;
+    protected $partnerKey;
+
     public function __construct()
     {
         parent::__construct();
+        $wxpay = C('wechat');
+        pr($wxpay);
+        $this->appId = $wxpay['appId'];
+        $this->appSecret = $wxpay['appSecret'];
+        $this->partnerId = $wxpay['partnerId'];
+        $this->partnerKey = $wxpay['partnerKey'];
+        $wxConfig = C('wechat.WX_CONFIG');
+        $this->access_token_path = $wxConfig['access_token_path'];
+        $this->jsapi_ticket_path = $wxConfig['jsapi_ticket_path'];
+
+        pr($this);
     }
 
     public function getOpenid(){
