@@ -8,7 +8,7 @@ return array(
     ),
 
     'WX_CONFIG' => array(
-        'access_token_path' => STORAGE_PATH.'wxtoken'.DIRECTORY_SEPARATOR.'access_token.json'),
-        'jsapi_ticket_path' => storage_path('wxtoken'.DIRECTORY_SEPARATOR.'jsapi_ticket.json'),
+        'access_token_path' => STORAGE_PATH.'wxtoken'.DIRECTORY_SEPARATOR.'access_token.json',
+        'jsapi_ticket_path' => STORAGE_PATH.'wxtoken'.DIRECTORY_SEPARATOR.'jsapi_ticket.json',
     ),
 );

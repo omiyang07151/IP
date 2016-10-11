@@ -14,17 +14,16 @@ class HomeBaseController extends BaseController{
     public function __construct()
     {
         parent::__construct();
-        $wxpay = C('wechat');
-        pr($wxpay);
+        $wxpay = C('WX_PAY');
         $this->appId = $wxpay['appId'];
         $this->appSecret = $wxpay['appSecret'];
         $this->partnerId = $wxpay['partnerId'];
         $this->partnerKey = $wxpay['partnerKey'];
-        $wxConfig = C('wechat.WX_CONFIG');
+        $wxConfig = C('WX_CONFIG');
         $this->access_token_path = $wxConfig['access_token_path'];
         $this->jsapi_ticket_path = $wxConfig['jsapi_ticket_path'];
 
-        pr($this);
+        $this->getOpenid();
     }
 
     public function getOpenid(){
