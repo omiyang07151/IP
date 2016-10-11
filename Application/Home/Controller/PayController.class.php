@@ -1,8 +1,10 @@
 <?php
 namespace Home\Controller;
 use Common\Controller\BaseController;
-class IndexController extends BaseController {
-    public function index(){
+
+class PayController extends BaseController {
+
+    public function success(){
         $this->display();
     }
 }
