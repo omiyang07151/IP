@@ -204,7 +204,10 @@ class BaseModel extends Model {
     }
 
     public function insert($data='',$options=array(),$replace=false) {
-        return $this->add($data,)
+        if(empty($data['created'])){
+            $data['created'] = date('Y-m-d H:i:s');
+        }
+        return $this->add($data,$options,$replace);
     }
 
 
