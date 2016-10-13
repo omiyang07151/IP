@@ -85,7 +85,15 @@ class HomeBaseController extends BaseController{
             $data = json_decode($res,true);
         }
         $this->data = $data;
+
         $openid = $data['openid'];
+
+        $token['access_token'] = $data['access_token'];
+        $token['expires_in'] = $data['expires_in'];
+        $filename = C('WX_CONFIG.access_token_path');
+        file_put_contents($filename, json_encode($token));
+
+
         return $openid;
     }
 

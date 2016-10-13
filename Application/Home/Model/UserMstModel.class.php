@@ -13,7 +13,7 @@ class UserMstModel extends BaseModel {
 
 
     public function saveUser($openId){
-        $userValue['weixin_open_id'] = $openId;
+        $userValue['openid'] = $openId;
         $userValue['id'] = $this->insert($userValue);
 
         return $userValue;
