@@ -14,14 +14,14 @@ class HomeBaseController extends BaseController{
         parent::__construct();
 
 
-        if(!$this->isLogin()){
-            Log::write('logining....');
-            $this->getOpenid();
-        }
-        else {
+//        if(!$this->isLogin()){
             Log::write('not logining....');
-            $this->user = session('User');
-        }
+            $this->getOpenid();
+//        }
+//        else {
+//            Log::write('logining....');
+//            $this->user = session('User');
+//        }
     }
 
     public function isLogin(){
