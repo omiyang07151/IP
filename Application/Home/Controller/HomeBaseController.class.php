@@ -15,9 +15,11 @@ class HomeBaseController extends BaseController{
 
 
         if($this->isLogin()){
+            Log::write('User logined ===================');
             $this->user = session('User');
         }
         else {
+            Log::write('User not logined ===================');
             $wxUtil = new WxUtil();
             $wxUser = $wxUtil->getWxUserInfo();
 
