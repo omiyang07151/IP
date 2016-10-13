@@ -339,7 +339,7 @@ class BaseModel extends Model {
     }
 
     public function showSql(){
-        if ($_GET['showSql']){
+        if (isset($_GET['showSql']) && $_GET['showSql']){
             echo $this->getLastSql().'<br>';
         }
     }
