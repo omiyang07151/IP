@@ -65,6 +65,41 @@ class HomeBaseController extends BaseController{
         }
     }
 
+    public function GetOpenidFromMp($code)
+    {
+        $url = $this->__CreateOauthUrlForOpenid($code);
+        //初始化curl
+        $ch = curl_init();
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, 7200);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //运行curl，结果以jason形式返回
+        $res = curl_exec($ch);
+        curl_close($ch);
+        //取出openid
+        if(!empty($res)){
+            $data = json_decode($res,true);
+        }
+        $this->data = $data;
+        $openid = $data['openid'];
+        return $openid;
+    }
+
+    public function saveClient($openId){
+        $userModel = D('UserMst');
+        $checkuser = $userModel->checkUser($openId);
+        if(empty($checkuser)){
+            $user = $userModel->saveUser($openId);
+        }else{
+            $user = $checkuser;
+        }
+        return $user;
+    }
+
     /**
      *
      * 构造获取code的url连接

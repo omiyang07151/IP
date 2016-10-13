@@ -203,6 +203,10 @@ class BaseModel extends Model {
         return $result;
     }
 
+    public function insert($data='',$options=array(),$replace=false) {
+        return $this->add($data,)
+    }
+
 
     public function buildSelectOptions($field, $where=null, $value=null, $order=null){
         if (empty($where)) {
