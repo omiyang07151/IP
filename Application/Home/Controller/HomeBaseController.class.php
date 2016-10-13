@@ -10,6 +10,7 @@ class HomeBaseController extends BaseController{
     private $appSecret;
     protected $partnerId;
     protected $partnerKey;
+    public $user;
 
     public function __construct()
     {
@@ -23,7 +24,22 @@ class HomeBaseController extends BaseController{
         $this->access_token_path = $wxConfig['access_token_path'];
         $this->jsapi_ticket_path = $wxConfig['jsapi_ticket_path'];
 
-        $this->getOpenid();
+        if(!$this->isLogin()){
+            $this->getOpenid();
+        }
+        else {
+            $this->user = session('User');
+        }
+    }
+
+    public function isLogin(){
+        $user = session('User');
+        if(!empty($user)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function getOpenid(){
@@ -39,7 +55,7 @@ class HomeBaseController extends BaseController{
             $code = $_GET['code'];
             $openid = $this->getOpenidFromMp($code);
             $result = $this->saveClient($openid);
-            session(['User'=>$result]);
+            session('User',$result);
         }
     }
 
