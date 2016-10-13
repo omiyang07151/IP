@@ -57,9 +57,9 @@ class WxUtil {
         } else {
             //获取code码，以获取openid
             $code = $_GET['code'];
-            list($openid, $access_token) = $this->getAccessTokenAndOpenid($code);
+            $result = $this->_GetAccessTokenAndOpenid($code);
 
-            return $openid;
+            return $result['openid'];
         }
     }
 
@@ -75,8 +75,8 @@ class WxUtil {
         } else {
             //获取code码，以获取openid
             $code = $_GET['code'];
-            list($openid, $access_token) = $this->_GetAccessTokenAndOpenid($code);
-            $wxUser = $this->_GetWxUserByOpenId($access_token, $openid);
+            $result = $this->_GetAccessTokenAndOpenid($code);
+            $wxUser = $this->_GetWxUserByOpenId($result['access_token'], $result['openid']);
 
             return $wxUser;
         }
@@ -136,6 +136,8 @@ class WxUtil {
     }
 
     private function curl($url, $data=null){
+
+        Log::write('======URL:'.$url);
         $ch = curl_init();
         //设置超时
         curl_setopt($ch, CURLOPT_TIMEOUT, 7200);
