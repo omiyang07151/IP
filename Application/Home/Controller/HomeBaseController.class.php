@@ -14,14 +14,17 @@ class HomeBaseController extends BaseController{
         parent::__construct();
 
 
-//        if(!$this->isLogin()){
-            Log::write('not logining....');
-            $this->getOpenid();
-//        }
-//        else {
-//            Log::write('logining....');
-//            $this->user = session('User');
-//        }
+        if($this->isLogin()){
+            $this->user = session('User');
+        }
+        else {
+            $wxUtil = new WxUtil();
+            $wxUser = $wxUtil->getWxUserInfo();
+
+            $result = $this->saveUser($wxUser);
+            $this->user = $this->getUserFromWx();
+            session('User',$result);
+        }
     }
 
     public function isLogin(){
@@ -33,20 +36,6 @@ class HomeBaseController extends BaseController{
             return false;
         }
     }
-
-    public function getOpenid(){
-
-        $wxUtil = new WxUtil();
-
-        $wxUser = $wxUtil->getWxUserInfo();
-        Log::write('wxUser:'.json_encode($wxUser));
-
-        $result = $this->saveUser($wxUser);
-        session('User',$result);
-
-    }
-
-
 
     public function saveUser($wxUser){
         $userModel = D('UserMst');
