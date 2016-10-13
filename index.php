@@ -28,6 +28,8 @@ define ( 'RUNTIME_PATH', './Runtime/' );
 
 define ('STORAGE_PATH', './Storage/');
 
+define ('SITE_PATH', './');
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 
