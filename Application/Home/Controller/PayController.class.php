@@ -48,6 +48,7 @@ class PayController extends HomeBaseController {
         }
         $wxpayUtil->notifyUrl = $notifyUrl;
         $order = $wxpayUtil->wxPrepay();
+        $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-'.json_encode($order) );
         $jsApiParameters = $this->GetJsApiParameters($order);
         $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-'.$jsApiParameters );
         return $jsApiParameters;
