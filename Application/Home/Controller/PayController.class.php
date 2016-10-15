@@ -128,7 +128,7 @@ class PayController extends HomeBaseController {
 
         $verify_result = false;
         if(!empty($xml)){
-            $partnerKey = $this->partnerKey;
+            $partnerKey = C('WX_PAY.partnerKey');
             $notify_data = WxpayUtil::resultInit($xml, $partnerKey);
 
             if($notify_data !== false) {
