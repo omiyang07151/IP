@@ -73,10 +73,11 @@
 </div>
 <div class="booking-bot">
     <div class="booking-bot-left">
-        <p>总价￥</p><span class="booking-price">655</span><br/>
-        <span class="shen">省￥143</span>
+        <p>总价￥</p><span class="booking-price">{:$product['p_price']}</span><br/>
+
+        <span class="shen">省￥<?php echo $product['market_price']-$product['p_price']?></span>
     </div>
-    <a class="btn-pay" href="javascript:void(0)">去支付</a>
+    <div class="btn-pay" href="javascript:void(0)">去支付</div>
 </div>
 </form>
 
@@ -144,6 +145,8 @@
 </div>
 
 <script type="text/javascript">
+    var p_price = <?php echo $product['p_price']?>;
+    var market_price = <?php echo $product['market_price']?>;
     $(function(){
         $('.seldate').click(function(){
             $('.order-info-main').show();
@@ -204,6 +207,12 @@
             else{
                 a--;
                 $('.num-input').val(a)
+                total = p_price*a;
+                discount = (market_price-p_price)*a;
+                $('.booking-price').html(total);
+                $('.shen').html('省￥'+discount);
+
+
                 <?php if($product['is_need_id']==1):?>
                 len = $('.lzr-info').length;
                 one_id_ticket = <?php echo $product['one_id_ticket']?>;
@@ -211,7 +220,6 @@
                 if(input_num<len){
                     $('.info'+len).remove();
                 }
-
                 <?php endif;?>
             }
 
@@ -220,6 +228,12 @@
             var a = $('.num-input').val()
             a++;
             $('.num-input').val(a)
+
+            total = p_price*a;
+            discount = (market_price-p_price)*a;
+            $('.booking-price').html(total);
+            $('.shen').html('省￥'+discount);
+
             <?php if($product['is_need_id']==1):?>
             len = $('.lzr-info').length;
             one_id_ticket = <?php echo $product['one_id_ticket']?>;

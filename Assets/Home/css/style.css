@@ -83,11 +83,11 @@ img{border: none;width: 100%;outline: none;}
 .fj-num>input{width: 70px;float: left;margin: 9px 5px;height: 28px;line-height: 28px;padding: 0;text-align: center}
 .booking-div>input{width: 200px;float: right;border: none;height: 30px;line-height: 30px;padding: 0;text-align: right;margin-right: 10px;margin-top: 10px;color: #4a4a4a;font-size: 16px}
 .booking-bot{width: 100%;position: fixed;bottom: 0;left: 0;height: 60px;}
-.booking-bot-left{width: 28%;float: left;background-color: #ffffff;padding: 0 0 0 5%;height: 60px;}
+.booking-bot-left{width: 38%;float: left;background-color: #ffffff;padding: 0 0 0 5%;height: 60px;}
 .booking-bot-left>p{float: left;color: #000000;font-size: 14px;line-height: 25px;margin: 8px 0 0 0}
 .booking-price{float: left;color: #000000;font-size: 22px;font-weight: bold;margin-top: 3px}
 .shen{float: left;color: #4a4a4a;font-size: 14px}
-.btn-pay{width: 67%;float: left;color: #ffffff;background-color: #f76b6c;font-size: 24px;font-weight: bold;text-align: center;line-height: 60px;height: 60px}
+.btn-pay{width: 57%;float: left;color: #ffffff;background-color: #f76b6c;font-size: 24px;font-weight: bold;text-align: center;line-height: 60px;height: 60px}
 
 
 .success-pay{background: url("../images/pay/paybg.png") no-repeat center;background-size: 100% 100%;width: 94%;float: left;margin: 20% 3% 0 3%}
@@ -133,8 +133,8 @@ img{border: none;width: 100%;outline: none;}
 .day{width: 90%;float: left;margin-left: 6%}
 .day>li{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 30px}
 .date{width: 90%;float: left;;margin-left: 6%}
-.date>li{width: 14%;float: left;text-align: center;color: #cccccc;font-size: 14px;margin-top: 10px;line-height: 42px}
-.date>li.selday{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 42px}
+.date>li{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 42px}
+
 .choose1{background-color: #ff5a5f;border-radius: 21px;color: #ffffff!important;}
 .choose2{background-color: #ff5a5f;color: #ffffff!important;}
 .choose3{background-color: #ff5a5f;color: #ffffff!important;}
