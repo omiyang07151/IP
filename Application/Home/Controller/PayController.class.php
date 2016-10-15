@@ -1,6 +1,8 @@
 <?php
 namespace Home\Controller;
 
+use Common\Util\WxpayUtil\WxpayUtil;
+
 class PayController extends HomeBaseController {
 
     public function success(){
@@ -8,8 +10,20 @@ class PayController extends HomeBaseController {
     }
 
     public function pay(){
-
+        $this->display();
     }
+
+    public function prepay(){
+        $order['order_number'] = date('YmdHis');
+        $order['total_price'] = 1;
+        $jsApiParameters = $this->wxPay($order);
+        return Response::json([
+            'success' => true,
+            'jsApi' => $jsApiParameters
+        ]);
+    }
+
+
 
     /**
      * 微信预支付订单统一下单
@@ -18,14 +32,13 @@ class PayController extends HomeBaseController {
      */
     protected function wxPay($orderInfo){
 //        $wxpay = \Config::get('wxpay.WX_PAY');
-        $appId = $this->appId;
-        $appSecret =  $this->appSecret;
-        $notifyUrl = 'http://www.mirrorblack.cn/pay/wxnotify';
-        $wxpayUtil = new WxpayUtil($appId, $appSecret ,$this->partnerId ,$this->partnerKey);
-        $user = session('User');
-        $wxpayUtil->openId = $user['weixin_open_id'];
+
+        $notifyUrl = 'http://'.$_SERVER['SERVER_NAME'].'/pay/wxnotify';
+        $wxpayUtil = new WxpayUtil();
+
+        $wxpayUtil->openId = $this->user['openid'];
         $wxpayUtil->outTradeNo = $orderInfo['order_number'];
-        if(\Config::get('config.IS_TEST_PAY')) {
+        if(C('IS_TEST')) {
             $wxpayUtil->body = '黑镜测试订单微信支付';
             $wxpayUtil->totalFee = 1;
         } else {
@@ -35,7 +48,7 @@ class PayController extends HomeBaseController {
         $wxpayUtil->notifyUrl = $notifyUrl;
         $order = $wxpayUtil->wxPrepay();
         $jsApiParameters = $this->GetJsApiParameters($order);
-        $this->Log('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-' );
+        $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-' );
         return $jsApiParameters;
     }
     /**
@@ -64,5 +77,42 @@ class PayController extends HomeBaseController {
         $jsapi->SetPaySign($jsapi->MakeSign());
         $parameters = $jsapi->GetValues();
         return $parameters;
+    }
+
+    public function wxnotify(){
+        $xml = file_get_contents("php://input");
+        $xml = stripslashes($xml);
+        $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- xml :' . $xml);
+
+//        $verify_result = false;
+//        if(!empty($xml)){
+//            $partnerKey = $this->partnerKey;
+//            $notify_data = WxpayUtil::resultInit($xml, $partnerKey);
+//
+//            if($notify_data !== false) {
+//                $verify_result = WxpayUtil::checkNotifyData($notify_data);
+//            }
+//
+//            if($verify_result) {
+//                //商户订单号
+//                $out_trade_no = $notify_data['out_trade_no'];
+//                //微信支付订单号
+//                $trade_no = $notify_data['transaction_id'];
+//                //交易金额
+//                $wxpay_total = $notify_data['cash_fee'];
+//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- out_trade_no'.$out_trade_no);
+//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- trade_no'.$trade_no);
+//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- wxpay_total'.$wxpay_total);
+//                $this->notifySuccessOrderAct($out_trade_no, $trade_no, $wxpay_total);
+//
+//                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
+//            } else {
+//                //验证失败
+//                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
+//            }
+//        }else{
+//            $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- xml no data');
+//            die('<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[NO RESPONSE]]></return_msg></xml>');
+//        }
     }
 }

@@ -18,11 +18,14 @@ class WxpayUtil {
     private $partnerId;
     private $partnerKey;
 
-    function __construct($appId, $partnerId, $partnerKey)
+//    function __construct($appId, $partnerId, $partnerKey)
+    function __construct()
     {
-        $this->appId = $appId;
-        $this->partnerId = $partnerId;
-        $this->partnerKey = $partnerKey;
+        $this->appId = C('WX_PAY.appid');
+        $this->partnerId = C('WX_PAY.partnerId');
+        $this->partnerKey = C('WX_PAY.partnerKey');
+        $this->notifyUrl = C('WX_PAY.notifyUrl');
+
         DEFINE('WXPAY_APP_ID',$this->appId);
         DEFINE('WXPAY_APP_SECRET','');
         DEFINE('WXPAY_PARTNER_ID',$this->partnerId);
