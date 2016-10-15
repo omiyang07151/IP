@@ -21,7 +21,7 @@ class WxpayUtil {
 //    function __construct($appId, $partnerId, $partnerKey)
     function __construct()
     {
-        $this->appId = C('WX_PAY.appid');
+        $this->appId = C('WX_PAY.appId');
         $this->partnerId = C('WX_PAY.partnerId');
         $this->partnerKey = C('WX_PAY.partnerKey');
         $this->notifyUrl = C('WX_PAY.notifyUrl');
@@ -37,46 +37,16 @@ class WxpayUtil {
         $inputObj = new \WxPayUnifiedOrder();
         $inputObj->SetBody($this->body);
         $inputObj->SetOut_trade_no($this->outTradeNo);
+        $inputObj->SetTime_start(date("YmdHis"));
         $inputObj->SetTotal_fee($this->totalFee);
-        $inputObj->SetNotify_url($this->notifyUrl);
-//        if(!$isWechat){
-            $inputObj->SetAppid($this->appId);
-            $inputObj->SetMch_id($this->partnerId);
-            $inputObj->SetTrade_type('NATIVE');
-            $inputObj->SetProduct_id($this->productId);
-//        }
-//        else{
-//            $inputObj->SetAppid($this->appId);//公众账号ID
-//            $inputObj->SetMch_id($this->partnerId);//商户号
-//            $inputObj->SetTrade_type('APP');
-//        }
-
-        $result = \WxPayApi::unifiedOrder($inputObj);
-        \Think\Log::write('**** wx pre pay order *****:'.json_encode($result));
-        if($result['result_code']=='SUCCESS' && $result['return_code']=='SUCCESS'){
-//            $data['appid'] = $result['appid'];//WxPayConfig::APPID;
-//            $data['partnerid'] = $this->partnerId;
-//            $data['noncestr'] = \WxPayApi::getNonceStr();
-//            $data['prepayid'] = $result['prepay_id'];
-//            $data['package'] = 'Sign=WXPay';
-//            $data['timestamp'] = time();//WxPayApi::getMillisecond();
-//            $data['sign'] = $this->makSign($data);
-
-            /**
-             * 注意, 注意
-             * 自定义参数必须加载签名算法之后
-             */
-            $data['code_url'] = $result['code_url'];
-//            $data['code'] = \WxPayApi::getNonceStr();
-            /**
-             * 注意, 注意
-             * 自定义参数必须加载签名算法之后
-             */
-
-            return $data;
-        } else {
-            return false;
-        }
+        $inputObj->SetNotify_url($this->notifyUrl);//回调地址
+        $inputObj->SetTrade_type("JSAPI");
+        $inputObj->SetOpenid($this->openId);
+        $inputObj->SetAppid($this->appId);
+        $inputObj->SetMch_id($this->partnerId);
+        $order = \WxPayApi::unifiedOrder($inputObj);
+        \Think\Log::write('**** 统一下单支付单信息 *****:'.json_encode($order));
+        return $order;
     }
 
     public static function resultInit($xml, $partnerKey='') {

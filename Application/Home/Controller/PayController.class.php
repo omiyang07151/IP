@@ -14,6 +14,7 @@ class PayController extends HomeBaseController {
     }
 
     public function prepay(){
+        $this->writeLog('========prepay=========');
         $order['order_number'] = date('YmdHis');
         $order['total_price'] = 1;
         $jsApiParameters = $this->wxPay($order);
@@ -48,9 +49,9 @@ class PayController extends HomeBaseController {
         }
         $wxpayUtil->notifyUrl = $notifyUrl;
         $order = $wxpayUtil->wxPrepay();
-        $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-'.json_encode($order) );
+        $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay aaa -*-*-*-*-*-*-*-*-'.json_encode($order) );
         $jsApiParameters = $this->GetJsApiParameters($order);
-        $this->writeLog('-*-*-*-*-*-*-*-*- wx pre pay  -*-*-*-*-*-*-*-*-'.$jsApiParameters );
+        $this->writeLog('-*-*-*-*-*-*-*-*- wx GetJsApiParameters  -*-*-*-*-*-*-*-*-'.$jsApiParameters );
         return $jsApiParameters;
     }
     /**
