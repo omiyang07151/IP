@@ -185,6 +185,7 @@
                 success: function(data){
                     if(data.success){
                         result = data.jsApi;
+                        order_no = data.order_no;
                         myjs.hideLoading();
                         callpay();
                     }else{
@@ -266,6 +267,7 @@
     var signType = '';
     var paySign = '';
     var result = '';
+    var order_no = '';
 
     //调用微信JS api 支付
     function jsApiCall()
@@ -277,7 +279,7 @@
                     WeixinJSBridge.log(res.err_msg);
                     if(res.err_msg == "get_brand_wcpay_request:ok" ) {
 //                        $('.success').removeClass('disnone');
-                        window.location.href='/pay/success.html';
+                        window.location.href='/pay/success.html?ono='+order_no;
                     }else{
 //                        $('.alertcancel').show().fadeOut(3000);
                         myjs.showDialog('支付失败,请稍后再试');

@@ -6,6 +6,11 @@ use Common\Util\WxpayUtil\WxpayUtil;
 class PayController extends HomeBaseController {
 
     public function success(){
+        $order_no = I('ono');
+
+        $orderModel = D('OrderMst');
+        $order = $orderModel->getOrderByNumber($order_no);
+        $this->assign('order', $order);
         $this->display();
     }
 
@@ -32,6 +37,7 @@ class PayController extends HomeBaseController {
         $this->writeLog('========prepay:'.$jsApiParameters);
         die(json_encode([
             'success' => true,
+            'order_no' => $order['order_no'],
             'jsApi' => $jsApiParameters
         ]));
     }
@@ -105,40 +111,50 @@ class PayController extends HomeBaseController {
         return $parameters;
     }
 
+    protected function notifySuccessOrderAct($out_trade_no, $trade_no, $outsidePayTotal) {
+        $orderModel = D('OrderMst');
+        $orderModel->OrderPaySuccess($out_trade_no, $trade_no, $outsidePayTotal);
+
+        $this->writeLog('----- pay order finish ----- order number:'.$out_trade_no);
+        $this->writeLog('----- pay order finish ----- order trade_no:'.$trade_no);
+        $this->writeLog('----- pay order finish ----- order outsidePayTotal:'.$outsidePayTotal);
+
+    }
+
     public function wxnotify(){
         $xml = file_get_contents("php://input");
         $xml = stripslashes($xml);
         $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- xml :' . $xml);
 
-//        $verify_result = false;
-//        if(!empty($xml)){
-//            $partnerKey = $this->partnerKey;
-//            $notify_data = WxpayUtil::resultInit($xml, $partnerKey);
-//
-//            if($notify_data !== false) {
-//                $verify_result = WxpayUtil::checkNotifyData($notify_data);
-//            }
-//
-//            if($verify_result) {
-//                //商户订单号
-//                $out_trade_no = $notify_data['out_trade_no'];
-//                //微信支付订单号
-//                $trade_no = $notify_data['transaction_id'];
-//                //交易金额
-//                $wxpay_total = $notify_data['cash_fee'];
-//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- out_trade_no'.$out_trade_no);
-//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- trade_no'.$trade_no);
-//                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- wxpay_total'.$wxpay_total);
-//                $this->notifySuccessOrderAct($out_trade_no, $trade_no, $wxpay_total);
-//
-//                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
-//            } else {
-//                //验证失败
-//                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
-//            }
-//        }else{
-//            $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- xml no data');
-//            die('<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[NO RESPONSE]]></return_msg></xml>');
-//        }
+        $verify_result = false;
+        if(!empty($xml)){
+            $partnerKey = $this->partnerKey;
+            $notify_data = WxpayUtil::resultInit($xml, $partnerKey);
+
+            if($notify_data !== false) {
+                $verify_result = WxpayUtil::checkNotifyData($notify_data);
+            }
+
+            if($verify_result) {
+                //商户订单号
+                $out_trade_no = $notify_data['out_trade_no'];
+                //微信支付订单号
+                $trade_no = $notify_data['transaction_id'];
+                //交易金额
+                $wxpay_total = $notify_data['cash_fee'];
+                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- out_trade_no'.$out_trade_no);
+                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- trade_no'.$trade_no);
+                $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- wxpay_total'.$wxpay_total);
+                $this->notifySuccessOrderAct($out_trade_no, $trade_no, $wxpay_total);
+
+                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
+            } else {
+                //验证失败
+                die('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
+            }
+        }else{
+            $this->writeLog('-*-*-*-*-*-*-*-*- wxpay notify -*-*-*-*-*-*-*-*- xml no data');
+            die('<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[NO RESPONSE]]></return_msg></xml>');
+        }
     }
 }

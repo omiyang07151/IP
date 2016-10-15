@@ -3,11 +3,11 @@
     <p class="pay-title">支付成功</p>
     <span>我们正在为您处理订单</span>
     <ul>
-        <li><p>订单号</p><span>1234567896453</span></li>
+        <li><p>订单号</p><span>{:$order['order_no']}</span></li>
         <li><p>支付方式</p><span>微信支付</span></li>
-        <li><p>联系人</p><span>拼了嘛</span></li>
-        <li><p>手机号</p><span>1234567896453</span></li>
-        <li><p>订单日期</p><span>2016/09/01 18:18:36</span></li>
+        <li><p>联系人</p><span>{:$order['linkman']}</span></li>
+        <li><p>手机号</p><span>{:$order['linkmobile']}</span></li>
+        <li><p>订单日期</p><span>{:$order['created']}</span></li>
     </ul>
-    <a class="btn-more" href="order.html">订单详情</a>
+    <a class="btn-more" href="/user/orderlist.html">订单详情</a>
 </div>
