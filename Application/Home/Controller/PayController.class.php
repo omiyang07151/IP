@@ -17,10 +17,10 @@ class PayController extends HomeBaseController {
         $order['order_number'] = date('YmdHis');
         $order['total_price'] = 1;
         $jsApiParameters = $this->wxPay($order);
-        return Response::json([
+        die(json_encode([
             'success' => true,
             'jsApi' => $jsApiParameters
-        ]);
+        ]));
     }
 
 
