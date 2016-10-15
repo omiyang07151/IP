@@ -1,7 +1,7 @@
 <form id="booking-form">
     <input type="hidden" name="product_mst_id" value="{:$product['id']}"/>
-    <input type="hidden" name="checkin" value="{:$product['checkin_start']}"/>
-    <input type="hidden" name="checkout" value="<?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?>"/>
+    <input type="hidden" name="checkin" id="checkin" value="<?php echo date('Y/m/d', strtotime($product['checkin_start']))?>"/>
+    <input type="hidden" name="checkout" id="checkout" value="<?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?>"/>
     <input type="hidden" name="bed_type" id="bed_type" value="1"/>
 <div class="main booking-main">
     <div class="top">
@@ -23,7 +23,7 @@
                 <div class=" booking-div booking-line">
                     <span>入住日期</span>
                     <img src="__IMG__/order/arrow.png"/>
-                    <p><?php echo date('Y/m/d', strtotime($product['checkin_start']));?> - <?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?></p>
+                    <p class="date_range"><?php echo date('Y/m/d', strtotime($product['checkin_start']));?> - <?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?></p>
                 </div>
             </a>
             <div class=" booking-div booking-line">
@@ -87,13 +87,20 @@
             <!--<img src="__IMG__/navi/navi-back.png"/>-->
         <!--</a>-->
         <p>入住日期</p>
-        <a href="javascript:void(0)" class="close explain-close">
-            <img src="__IMG__/navi/navi-close.png"/>
-        </a>
+        <!--<a href="javascript:void(0)" class="close explain-close">-->
+            <!--<img src="__IMG__/navi/navi-close.png"/>-->
+        <!--</a>-->
 
     </div>
+    <?php
+        $m = date('n', strtotime($product['checkin_end'])) - date('n', strtotime($product['checkin_start']));
+        $year = date('Y',strtotime($product['checkin_start']));
+        $month = date('n',strtotime($product['checkin_start']));
+        for($mon=0;$mon<=$m;$mon++){
+            $checkin_start = date('Y-m-01',mktime(0,0,0, $month+$mon, 1, $year));
+    ?>
     <div class="caleder">
-        <p>2016<br>9月</p>
+        <p><?php echo date('Y', strtotime($checkin_start))?><br><?php echo date('m', strtotime($checkin_start))?>月</p>
         <ul class="day">
             <li>一</li>
             <li>二</li>
@@ -104,31 +111,33 @@
             <li>日</li>
         </ul>
         <ul class="date">
-            <li class="choose1">1</li>
-            <li class="choose2">2</li>
-            <li class="choose3">3</li>
-            <li class="choose4">4</li>
-            <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
-            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li>
+
+            <!--<li class="choose1">1</li>-->
+            <!--<li class="choose2">2</li>-->
+            <!--<li class="choose3">3</li>-->
+            <!--<li class="choose4">4</li>-->
+            <?php
+                $t = date('t',strtotime($checkin_start));
+                $n = date('N',strtotime(date('Y-m-01',strtotime($checkin_start))));
+                for($i=1;$i<$n;$i++){
+                    echo '<li></li>';
+                }
+                for($i=1;$i<=$t;$i++){
+                    $day_time = strtotime($checkin_start)+($i-1)*86400;
+                    if($day_time==strtotime($product['checkin_start'])){
+                        echo '<li class="selday choose1" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m.d', $day_time+86400).'">'.$i.'</li>';
+                    }
+                    else if($day_time>strtotime($product['checkin_start']) && $day_time<=strtotime($product['checkin_end'])){
+                        echo '<li class="selday" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m.d', $day_time+86400).'">'.$i.'</li>';
+                    }
+                    else {
+                        echo '<li>'.$i.'</li>';
+                    }
+                }
+            ?>
         </ul>
     </div>
-    <div class="caleder">
-        <p>2016<br>9月</p>
-        <ul class="day">
-            <li>一</li>
-            <li>二</li>
-            <li>三</li>
-            <li>四</li>
-            <li>五</li>
-            <li>六</li>
-            <li>日</li>
-        </ul>
-        <ul class="date">
-            <li>1</li><li>2</li><li>3</li><li>4</li>
-            <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
-            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li>
-        </ul>
-    </div>
+    <?php }?>
 </div>
 <div class="btn-qr disnone">
     确定
@@ -143,13 +152,13 @@
             $('.booking-bot').hide();
         })
         $('.explain-close').click(function(){
+
+        })
+        $('.btn-qr').click(function(){
             $('.order-info-main').hide();
             $('.btn-qr').hide();
             $('.booking-main').show();
             $('.booking-bot').show();
-        })
-        $('.btn-qr').click(function(){
-
         })
         $('.btn-pay').click(function(){
             linkman = $('#linkman').val().trim();
@@ -165,21 +174,21 @@
             }
 
             myjs.showLoading('订单提交中');
-//            $.ajax({
-//                type: 'POST',
-//                url: '/pay/create_order',
-//                data: $('#booking-form').serialize(),
-//                dataType: 'json',
-//                success: function(data){
-//                    if(data.success){
-//                        result = data.jsApi;
-//                        $('.weui_loading_toast').hide();
-//                        callpay();
-//                    }else{
-//                        alert(data.errors);
-//                    }
-//                }
-//            } );
+            $.ajax({
+                type: 'POST',
+                url: '/pay/create_order',
+                data: $('#booking-form').serialize(),
+                dataType: 'json',
+                success: function(data){
+                    if(data.success){
+                        result = data.jsApi;
+                        myjs.hideLoading();
+                        callpay();
+                    }else{
+                        alert(data.errors);
+                    }
+                }
+            } );
 
         })
         $('.fx-choose>li').click(function(){
@@ -253,9 +262,11 @@
                 function(res){
                     WeixinJSBridge.log(res.err_msg);
                     if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                        $('.success').removeClass('disnone');
+//                        $('.success').removeClass('disnone');
+                        window.location.href='/pay/success.html';
                     }else{
-                        $('.alertcancel').show().fadeOut(3000);
+//                        $('.alertcancel').show().fadeOut(3000);
+                        myjs.showDialog('支付失败,请稍后再试');
                     }
                 }
         );

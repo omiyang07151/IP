@@ -133,7 +133,8 @@ img{border: none;width: 100%;outline: none;}
 .day{width: 90%;float: left;margin-left: 6%}
 .day>li{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 30px}
 .date{width: 90%;float: left;;margin-left: 6%}
-.date>li{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 42px}
+.date>li{width: 14%;float: left;text-align: center;color: #cccccc;font-size: 14px;margin-top: 10px;line-height: 42px}
+.date>li.selday{width: 14%;float: left;text-align: center;color: #474747;font-size: 14px;margin-top: 10px;line-height: 42px}
 .choose1{background-color: #ff5a5f;border-radius: 21px;color: #ffffff!important;}
 .choose2{background-color: #ff5a5f;color: #ffffff!important;}
 .choose3{background-color: #ff5a5f;color: #ffffff!important;}

@@ -25,6 +25,15 @@ var myjs = {
         $('.weui-dialog__btn_primary').click(function(){
             $('#iosDialog2').hide();
         })
+        $('.selday').click(function(){
+            $('.choose1').removeClass('choose1');
+            $(this).addClass('choose1');
+            start = $(this).attr('data-s');
+            end = $(this).attr('data-e');
+            $('#checkin').val(start);
+            $('#checkout').val(end);
+            $('.date_range').html(start+' - '+end);
+        })
     },
     showLoading:function(msg){
         $('.weui-toast__content').html(msg);
