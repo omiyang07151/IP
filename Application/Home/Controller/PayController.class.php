@@ -62,7 +62,7 @@ class PayController extends HomeBaseController {
         $wxpayUtil = new WxpayUtil();
 
         $wxpayUtil->openId = $this->user['openid'];
-        $wxpayUtil->outTradeNo = $orderInfo['order_number'];
+        $wxpayUtil->outTradeNo = $orderInfo['order_no'];
         if(C('IS_TEST')) {
             $wxpayUtil->body = '黑镜测试订单微信支付';
             $wxpayUtil->totalFee = 1;
