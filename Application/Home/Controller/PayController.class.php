@@ -13,6 +13,29 @@ class PayController extends HomeBaseController {
         $this->display();
     }
 
+    public function create_order(){
+        $orderModel = D('OrderMst');
+        $order = $orderModel->create();
+        $order['checkin_info'] = json_encode($order['checkin_info']);
+        $order['user_mst_id'] = $this->user['id'];
+        $order['order_no'] = date('ymdHis').rand(rand(1000,5000),rand(5001,9999));
+
+
+        $productModel = D('ProductMst');
+        $product = $productModel->getById($order['product_mst_id']);
+        $order['total_price'] = $product['p_price'] * $order['room_num'];
+        $order['pay_status'] = 0;
+
+        $order['id'] = $orderModel->insert($order);
+
+        $jsApiParameters = $this->wxPay($order);
+        $this->writeLog('========prepay:'.$jsApiParameters);
+        die(json_encode([
+            'success' => true,
+            'jsApi' => $jsApiParameters
+        ]));
+    }
+
     public function prepay(){
         $this->writeLog('========prepay=========');
         $order['order_number'] = date('YmdHis');

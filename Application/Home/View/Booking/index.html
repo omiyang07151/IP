@@ -1,3 +1,8 @@
+<form id="booking-form">
+    <input type="hidden" name="product_mst_id" value="{:$product['id']}"/>
+    <input type="hidden" name="checkin" value="{:$product['checkin_start']}"/>
+    <input type="hidden" name="checkout" value="<?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?>"/>
+    <input type="hidden" name="bed_type" id="bed_type" value="1"/>
 <div class="main booking-main">
     <div class="top">
         <a class="nav" href="">
@@ -10,9 +15,11 @@
             <div class="booking-title">{:$product['title']}</div>
             <div class="booking-detail">{:$product['roomtype']} 1间/1晚</div>
         </div>
+
+
         <span>入住信息</span>
         <div class="booking-white">
-            <a href="date.html">
+            <a href="javascript:void(0)" class="seldate">
                 <div class=" booking-div booking-line">
                     <span>入住日期</span>
                     <img src="__IMG__/order/arrow.png"/>
@@ -22,41 +29,46 @@
             <div class=" booking-div booking-line">
                 <span>房型</span>
                 <ul class="fx-choose">
-                    <li class="fx-on">大床</li>
-                    <li>双床</li>
+                    <li class="fx-on" data-val="1">大床</li>
+                    <li data-val="2">双床</li>
                 </ul>
             </div>
             <div class=" booking-div booking-line">
                 <span>房间数量</span>
                 <div class="fj-num">
                     <img class="btn-minus" src="__IMG__/order/minus.png"/>
-                    <input class="num-input" type="number" value="1"/>
+                    <input class="num-input" type="number" name="room_num" value="1"/>
                     <img class="btn-add" src="__IMG__/order/add.png"/>
                 </div>
             </div>
         </div>
         <span>联系人信息</span>
+
         <div class="booking-white">
                 <div class=" booking-div booking-line">
                     <span>姓名</span>
-                    <input type="text" class="name" placeholder="输入真实姓名"/>
+                    <input type="text" class="name" name="linkman" id="linkman" placeholder="输入真实姓名"/>
                 </div>
             <div class=" booking-div booking-line">
                 <span>手机号</span>
-                <input type="number" class="tel" placeholder="输入11位手机号"/>
+                <input type="number" class="tel" name="linkmobile" id="linkmobile" placeholder="输入11位手机号"/>
             </div>
         </div>
+
+        <?php if($product['is_need_id']==1):?>
         <span>入住人信息</span>
-        <div class="booking-white last-div">
+        <div class="booking-white last-div lzr-info info1">
             <div class=" booking-div booking-line">
                 <span>姓名</span>
-                <input type="text" class="name" placeholder="输入真实姓名"/>
+                <input type="text" class="name" name="checkin_info[0][name]" placeholder="输入真实姓名"/>
             </div>
             <div class=" booking-div booking-line">
                 <span>身份证</span>
-                <input name="page" type="text" maxlength="19"  placeholder="输入18位身份证号码"/>
+                <input  type="text" maxlength="19" name="checkin_info[0][identify]" placeholder="输入18位身份证号码"/>
             </div>
         </div>
+        <?php endif;?>
+
     </div>
 </div>
 <div class="booking-bot">
@@ -64,15 +76,18 @@
         <p>总价￥</p><span class="booking-price">655</span><br/>
         <span class="shen">省￥143</span>
     </div>
-    <a class="btn-pay" href="pay.html">去支付</a>
+    <a class="btn-pay" href="javascript:void(0)">去支付</a>
 </div>
-<div class="explain">
+</form>
+
+
+<div class="main order-info-main disnone">
     <div class="top">
-        <a class="nav" href="/booking.html">
-            <img src="__IMG__/navi/navi-back.png"/>
-        </a>
+        <!--<a class="nav" href="/booking.html">-->
+            <!--<img src="__IMG__/navi/navi-back.png"/>-->
+        <!--</a>-->
         <p>入住日期</p>
-        <a href="/booking.html" class="close explain-close">
+        <a href="javascript:void(0)" class="close explain-close">
             <img src="__IMG__/navi/navi-close.png"/>
         </a>
 
@@ -94,7 +109,7 @@
             <li class="choose3">3</li>
             <li class="choose4">4</li>
             <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
-            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li>
         </ul>
     </div>
     <div class="caleder">
@@ -111,7 +126,152 @@
         <ul class="date">
             <li>1</li><li>2</li><li>3</li><li>4</li>
             <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
-            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li><li>19</li><li>20</li><li>21</li>
         </ul>
     </div>
 </div>
+<div class="btn-qr disnone">
+    确定
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $('.seldate').click(function(){
+            $('.order-info-main').show();
+            $('.btn-qr').show();
+            $('.booking-main').hide();
+            $('.booking-bot').hide();
+        })
+        $('.explain-close').click(function(){
+            $('.order-info-main').hide();
+            $('.btn-qr').hide();
+            $('.booking-main').show();
+            $('.booking-bot').show();
+        })
+        $('.btn-qr').click(function(){
+
+        })
+        $('.btn-pay').click(function(){
+            linkman = $('#linkman').val().trim();
+            linkmobile = $('#linkmobile').val().trim();
+
+            if(linkman == ''){
+                myjs.showDialog("请输入联系人姓名");
+                return;
+            }
+            if(linkmobile == ''){
+                myjs.showDialog("请输入联系人手机号");
+                return;
+            }
+
+            myjs.showLoading('订单提交中');
+//            $.ajax({
+//                type: 'POST',
+//                url: '/pay/create_order',
+//                data: $('#booking-form').serialize(),
+//                dataType: 'json',
+//                success: function(data){
+//                    if(data.success){
+//                        result = data.jsApi;
+//                        $('.weui_loading_toast').hide();
+//                        callpay();
+//                    }else{
+//                        alert(data.errors);
+//                    }
+//                }
+//            } );
+
+        })
+        $('.fx-choose>li').click(function(){
+            $(this).addClass('fx-on');
+            $(this).siblings().removeClass('fx-on');
+            bed_type = $(this).attr('data-val');
+            $('#bed_type').val(bed_type);
+        });
+        $('.btn-minus').click(function(){
+            var a = $('.num-input').val()
+            if(a<=1){
+            }
+            else{
+                a--;
+                $('.num-input').val(a)
+                <?php if($product['is_need_id']==1):?>
+                len = $('.lzr-info').length;
+                one_id_ticket = <?php echo $product['one_id_ticket']?>;
+                input_num = Math.ceil(a/one_id_ticket);
+                if(input_num<len){
+                    $('.info'+len).remove();
+                }
+
+                <?php endif;?>
+            }
+
+        });
+        $('.btn-add').click(function(){
+            var a = $('.num-input').val()
+            a++;
+            $('.num-input').val(a)
+            <?php if($product['is_need_id']==1):?>
+            len = $('.lzr-info').length;
+            one_id_ticket = <?php echo $product['one_id_ticket']?>;
+            input_num = Math.ceil(a/one_id_ticket);
+            console.log(len);
+            console.log(input_num);
+            if(input_num>len){
+                html = '<div class="booking-white last-div lzr-info info'+input_num+'" style="margin-top:10px;">' +
+                            '<div class=" booking-div booking-line">'+
+                                '<span>姓名</span>'+
+                                '<input type="text" class="name" name="checkin_info['+len+'][name]" placeholder="输入真实姓名"/>'+
+                            '</div>'+
+                            '<div class=" booking-div booking-line">'+
+                                '<span>身份证</span>'+
+                                '<input  type="text" maxlength="19" name="checkin_info['+len+'][identify]" placeholder="输入18位身份证号码"/>'+
+                            '</div>'+
+                        '</div>';
+                $('.info'+len).after(html);
+            }
+
+            <?php endif;?>
+        });
+
+    })
+
+    var appId = '';
+    var timeStamp = '';
+    var nonceStr = '';
+    var package = '';
+    var signType = '';
+    var paySign = '';
+    var result = '';
+
+    //调用微信JS api 支付
+    function jsApiCall()
+    {
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                result,
+                function(res){
+                    WeixinJSBridge.log(res.err_msg);
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        $('.success').removeClass('disnone');
+                    }else{
+                        $('.alertcancel').show().fadeOut(3000);
+                    }
+                }
+        );
+    }
+
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+</script>

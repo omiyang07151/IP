@@ -22,25 +22,22 @@ var myjs = {
 
     pageClick:function(){
         var self = this;
-        $('.fx-choose>li').click(function(){
-            $(this).addClass('fx-on');
-            $(this).siblings().removeClass('fx-on')
-        });
-        $('.btn-minus').click(function(){
-            var a = $('.num-input').val()
-            if(a<=1){
-            }
-            else{
-                a--;
-                $('.num-input').val(a)
-            }
-        });
-        $('.btn-add').click(function(){
-            var a = $('.num-input').val()
-            a++;
-            $('.num-input').val(a)
-        });
+        $('.weui-dialog__btn_primary').click(function(){
+            $('#iosDialog2').hide();
+        })
+    },
+    showLoading:function(msg){
+        $('.weui-toast__content').html(msg);
+        $('#loadingToast').show();
+    },
+    hideLoading:function(){
+        $('#loadingToast').hide();
+    },
+    showDialog:function(msg){
+        $('.weui-dialog__bd').html(msg);
+        $('#iosDialog2').show();
     }
+
 
 
 
