@@ -1,0 +1,61 @@
+<p> Test Pay </p>
+
+<script type="text/javascript">
+    var appId = '';
+    var timeStamp = '';
+    var nonceStr = '';
+    var package = '';
+    var signType = '';
+    var paySign = '';
+    var result = '';
+    $(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/pay/finalsubmit',
+            data: { },
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                if(data.success){
+                    result = data.jsApi;
+                    callpay();
+                }else{
+                    alert(data.errors);
+                }
+            }
+        } );
+    })
+
+    //调用微信JS api 支付
+    function jsApiCall()
+    {
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                result,
+                function(res){
+                    WeixinJSBridge.log(res.err_msg);
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        $('.success').removeClass('disnone');
+                    }else{
+                        $('.alertcancel').show().fadeOut(3000);
+                    }
+                }
+        );
+    }
+
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+</script>

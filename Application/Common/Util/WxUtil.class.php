@@ -65,6 +65,7 @@ class WxUtil {
 
     //获取用户信息
     public function getWxUserInfo(){
+
         $this->IsWxLogin();
         if (!isset($_GET['code'])){
             //触发微信返回code码

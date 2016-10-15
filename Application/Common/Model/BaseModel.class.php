@@ -196,7 +196,7 @@ class BaseModel extends Model {
 
         $where = $this->getPk() .' = '. $id;
         if(!$show_deleted){
-            $where .= ' AND deleted is null';
+            $where .= ' AND del_flag = 0';
         }
 
         $result = $this->getOne($where, null, $fields);

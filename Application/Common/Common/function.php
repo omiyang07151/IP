@@ -146,3 +146,16 @@ function pr_debug($data, $exit=true){
         die('======= die pr_debug =======');
     }
 }
+
+function mbSub($str, $maxlen, $start=0){
+    if(empty($str)){
+        return;
+    }
+
+    if(mb_strlen($str, 'UTF-8')>$maxlen){
+        return mb_substr($str, $start, $maxlen-2, 'UTF-8').'...';
+    }
+    else {
+        return $str;
+    }
+}

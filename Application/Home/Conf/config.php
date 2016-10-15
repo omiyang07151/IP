@@ -14,4 +14,6 @@ return array(
         '__COMM_JS__'     => __ROOT__ . '/Assets/Common/js',
         '__COMM_VIDEO__'     => __ROOT__ . '/Assets/Common/video',
     ),
+    'HOME_DEFAULT_PAGE'=>1,
+    'HOME_DEFAULT_SIZE'=>10,
 );

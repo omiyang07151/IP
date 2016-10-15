@@ -11,4 +11,6 @@ return array(
     'URL_PATHINFO_DEPR'    => '/', //PATHINFO URL分割符
 
     'LOAD_EXT_CONFIG' => 'db,wechat',
+    'IS_TEST' => true,
 );
+

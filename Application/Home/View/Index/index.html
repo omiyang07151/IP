@@ -3,11 +3,12 @@
         <a class="nav"><img src="__IMG__/navi/navi-home.png"/></a>
         <p>上海</p>
     </div>
-    <a href="/detail.html">
-    <div class="product">
 
+    <?php foreach($productList['aaData'] as $p):?>
+    <a href="/detail.html?id={:$p['id']}">
+    <div class="product">
         <div class="product-pic">
-            <img src="__IMG__/detail/img.png"/>
+            <img src="{:$p['coverimg']}"/>
             <div class="time-bg">
                 <div class="time">
                     <p>还有</p><span class="day">6</span><p>天</p><span class="hour">1</span><p>时</p><span class="minute">0</span><p>分</p><span class="second">5</span><p>秒结束</p>
@@ -15,61 +16,20 @@
             </div>
         </div>
         <div class="product-info">
-            <div class="title">上海梵璞主题文化酒店</div>
-            <div class="discribe">上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店</div>
+            <div class="title">{:mbSub($p['title'],11)}</div>
+            <div class="discribe">{:mbSub($p['intro'],40)}</div>
         </div>
         <div class="product-cz">
             <div class="price">
-                <p class="">拼团价￥</p><span class="now-price">655</span><span class="pro-price">/份</span><span class="pro-price line">￥998 </span>
+                <p class="">拼团价￥</p><span class="now-price">{:$p['p_price']}</span><span class="pro-price">/份</span><span class="pro-price line">￥{:$p['market_price']}</span>
             </div>
-            <a href="detail.html" class="go-tuan">去拼团</a>
-            <p class="tuan">已成团4/5</p>
+            <a href="/detail.html?id={:$p['id']}" class="go-tuan">去拼团</a>
+            <p class="tuan">已成团{:$p['saled_num']}/{:$p['limit_num']}</p>
         </div>
 
     </div>
     </a>
-    <div class="product">
-        <div class="product-pic">
-            <img src="__IMG__/detail/img.png"/>
-            <div class="time-bg">
-                <div class="time">
-                    <p>还有</p><span>6</span><p>天</p><span>23</span><p>时</p><span>59</span><p>分</p><span>59</span><p>秒结束</p>
-                </div>
-            </div>
-        </div>
-        <div class="product-info">
-            <div class="title">上海梵璞主题文化酒店</div>
-            <div class="discribe">上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店</div>
-        </div>
-        <div class="product-cz">
-            <div class="price">
-                <p class="">拼团价￥</p><span class="now-price">655</span><span class="pro-price">/份</span><span class="pro-price line">￥998 </span>
-            </div>
-            <a href="detail.html" class="go-tuan">去拼团</a>
-            <p class="tuan">已成团4/5</p>
-        </div>
-    </div>
-    <div class="product">
-        <div class="product-pic">
-            <img src="__IMG__/detail/img.png"/>
-            <div class="time-bg">
-                <div class="time">
-                    <p>还有</p><span>6</span><p>天</p><span>23</span><p>时</p><span>59</span><p>分</p><span>59</span><p>秒结束</p>
-                </div>
-            </div>
-        </div>
-        <div class="product-info">
-            <div class="title">上海梵璞主题文化酒店</div>
-            <div class="discribe">上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店上海梵璞主题文化酒店</div>
-        </div>
-        <div class="product-cz">
-            <div class="price">
-                <p class="">拼团价￥</p><span class="now-price">655</span><span class="pro-price">/份</span><span class="pro-price line">￥998 </span>
-            </div>
-            <a href="detail.html" class="go-tuan">去拼团</a>
-            <p class="tuan">已成团4/5</p>
-        </div>
-    </div>
+    <?php endforeach;?>
 </div>
 <script type="text/javascript">
         var day = $('.day').html();

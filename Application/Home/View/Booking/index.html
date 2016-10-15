@@ -7,8 +7,8 @@
     </div>
     <div class="booking-info">
         <div class="column">
-            <div class="booking-title">上海梵璞主题文化酒店</div>
-            <div class="booking-detail">高级大床房 1间/1晚 含双早</div>
+            <div class="booking-title">{:$product['title']}</div>
+            <div class="booking-detail">{:$product['roomtype']} 1间/1晚</div>
         </div>
         <span>入住信息</span>
         <div class="booking-white">
@@ -16,7 +16,7 @@
                 <div class=" booking-div booking-line">
                     <span>入住日期</span>
                     <img src="__IMG__/order/arrow.png"/>
-                    <p>2016/09/01 - 2016/09/02</p>
+                    <p><?php echo date('Y/m/d', strtotime($product['checkin_start']));?> - <?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?></p>
                 </div>
             </a>
             <div class=" booking-div booking-line">
@@ -65,4 +65,53 @@
         <span class="shen">省￥143</span>
     </div>
     <a class="btn-pay" href="pay.html">去支付</a>
+</div>
+<div class="explain">
+    <div class="top">
+        <a class="nav" href="/booking.html">
+            <img src="__IMG__/navi/navi-back.png"/>
+        </a>
+        <p>入住日期</p>
+        <a href="/booking.html" class="close explain-close">
+            <img src="__IMG__/navi/navi-close.png"/>
+        </a>
+
+    </div>
+    <div class="caleder">
+        <p>2016<br>9月</p>
+        <ul class="day">
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+            <li>日</li>
+        </ul>
+        <ul class="date">
+            <li class="choose1">1</li>
+            <li class="choose2">2</li>
+            <li class="choose3">3</li>
+            <li class="choose4">4</li>
+            <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
+            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+        </ul>
+    </div>
+    <div class="caleder">
+        <p>2016<br>9月</p>
+        <ul class="day">
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+            <li>日</li>
+        </ul>
+        <ul class="date">
+            <li>1</li><li>2</li><li>3</li><li>4</li>
+            <li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li>
+            <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+        </ul>
+    </div>
 </div>
