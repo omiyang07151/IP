@@ -14,10 +14,15 @@ class ProductMstModel extends BaseModel {
         return $data;
     }
 
-    public function getProductById($id){
-        $product = $this->getById($id);
-        $product['images'] = json_decode($product['images']);
-
+    public function getProductById($id, $fields=null){
+        $product = $this->getById($id, $fields);
+        if(!empty($product['images'])){
+            $product['images'] = json_decode($product['images']);
+        }
         return $product;
+    }
+
+    public function updateSaledById($id, $num){
+        $this->setInc('saled_num', $num);
     }
 }

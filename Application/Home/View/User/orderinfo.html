@@ -1,6 +1,6 @@
 <div class="main order-info-main">
     <div class="top">
-        <a class="nav" href="">
+        <a class="nav" href="/user/orderlist.html">
             <img src="__IMG__/navi/navi-back.png"/>
         </a>
         <p>我的订单</p>
@@ -9,16 +9,18 @@
         <div class="order">
             <span>酒店信息</span>
             <div class="order-bg">
+                <a href="/detail.html?id={:$order['product_mst_id']}">
                 <div class="order-top">
                     <div class="info-left">
-                        <p class="info-title">上海梵璞主题文化酒店</p>
+                        <p class="info-title">{:$order['hotel']['name']}</p>
                         <p class="info-describe">
-                            高级大床房 1间/1晚 含双早<br/>
-                            入住日期 2016-09-01 至 2016-09-02
+                            {:$order['roomtype']} 1间/1晚<br/>
+                            入住日期 {:$order['checkin']} 至 {:$order['checkout']}
                         </p>
                     </div>
                     <div class="info-arrow"><img src="__IMG__/order/arrow.png"/> </div>
                 </div>
+                </a>
             </div>
         </div>
     </div>
@@ -27,26 +29,32 @@
         <div class="booking-white">
             <div class="order-div booking-line">
                 <span>姓名</span>
-                <div class="information">拼了嘛</div>
+                <div class="information">{:$order['linkman']}</div>
             </div>
             <div class="order-div booking-line">
                 <span>手机号</span>
-                <div class="information">拼了嘛</div>
+                <div class="information">{:$order['linkmobile']}</div>
             </div>
         </div>
+        <?php if(!empty($order['checkin_info'])):?>
         <span>入住人信息</span>
-        <div class="booking-white last-div">
+        <?php foreach($order['checkin_info'] as $info):?>
+        <div class="booking-white last-div" style="margin-bottom:10px;">
             <div class="order-div booking-line">
                 <span>姓名</span>
-                <div class="information">拼了嘛</div>
+                <div class="information">{:$info['name']}</div>
             </div>
             <div class="order-div booking-line">
                 <span>身份证</span>
-                <div class="information">拼了嘛</div>
+                <div class="information">{:$info['identify']}</div>
             </div>
         </div>
+        <?php endforeach;?>
+        <?php endif;?>
     </div>
 </div>
+<?php if($order['pay_status']==0):?>
 <div class="btn-pay-2">
     去支付
 </div>
+<?php endif;?>

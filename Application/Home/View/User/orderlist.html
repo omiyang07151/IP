@@ -1,60 +1,53 @@
 <div class="main">
     <div class="top">
-        <a class="nav" href="">
-            <img src="__IMG__/navi/navi-back.png"/>
-        </a>
+        <!--<a class="nav" href="">-->
+            <!--<img src="__IMG__/navi/navi-back.png"/>-->
+        <!--</a>-->
         <p>我的订单</p>
     </div>
     <div class="order-list">
-        <div class="order">
-            <span>订单号：20160908123</span>
+        <?php foreach($orderList['aaData'] as $o):?>
+        <div class="order id{:$o['id']}">
+            <span>订单号：{:$o['order_no']}</span>
+            <a href="/user/orderinfo.html?id={:$o['id']}">
             <div class="order-bg">
                 <div class="order-top">
                     <div class="info-left">
-                        <p class="info-title">上海梵璞主题文化酒店</p>
+                        <p class="info-title">{:$o['hotel']['name']}</p>
                         <p class="info-describe">
-                            高级大床房 1间/1晚 含双早<br/>
-                            入住日期 2016-09-01 至 2016-09-02
+                            {:$o['roomtype']} 1间/1晚<br/>
+                            入住日期 {:$o['checkin']} 至 {:$o['checkout']}
                         </p>
                     </div>
                     <div class="info-arrow"><img src="__IMG__/order/arrow.png"/> </div>
                 </div>
-
-                <div class="info-bot"><a class="btn-delete">删除</a></div>
-            </div>
-        </div>
-        <div class="order">
-            <span>订单号：20160908123</span>
-            <div class="order-bg">
-                <div class="order-top">
-                    <div class="info-left">
-                        <p class="info-title">上海梵璞主题文化酒店</p>
-                        <p class="info-describe">
-                            高级大床房 1间/1晚 含双早<br/>
-                            入住日期 2016-09-01 至 2016-09-02
-                        </p>
-                    </div>
-                    <div class="info-arrow"><img src="__IMG__/order/arrow.png"/> </div>
+                <div class="info-bot">
+                <?php if($o['cancel_flag']==1):?>
+                    <a class="btn-qx">已取消</a>
+                <?php else:?>
+                    <?php if($o['pay_status']==0):?>
+                        <a class="go-pay" href="javascript:pay('{:$o["id"]}')">去支付</a>
+                        <a class="btn-qx" href="javascript:cancel('{:$o["id"]}')">取消</a></div>
+                    <?php else:?>
+                        <a class="btn-delete" href="javascript:del('{:$o["id"]}')">删除</a>
+                    <?php endif;?>
+                <?php endif;?>
                 </div>
-                <div class="info-bot"><a class="go-pay" href="order-info.html">去支付</a><a class="btn-qx">取消</a></div>
             </div>
+            </a>
         </div>
-        <div class="order">
-            <span>订单号：20160908123</span>
-            <div class="order-bg">
-                    <div class="order-top">
-                        <div class="info-left">
-                            <p class="info-title">上海梵璞主题文化酒店</p>
-                            <p class="info-describe">
-                                高级大床房 1间/1晚 含双早<br/>
-                                入住日期 2016-09-01 至 2016-09-02
-                            </p>
-                        </div>
-                        <div class="info-arrow"><img src="__IMG__/order/arrow.png"/> </div>
-                    </div>
-                <div class="info-bot"><a class="go-pay" href="order-info.html">去支付</a><a class="btn-qx">取消</a></div>
-            </div>
-        </div>
+        <?php endforeach;?>
     </div>
 </div>
 
+<script type="text/javascript">
+function pay(id){
+
+}
+function cancel(id){
+    console.log(id);
+}
+function del(id){
+    console.log(id);
+}
+</script>

@@ -15,6 +15,18 @@ class PayController extends HomeBaseController {
     }
 
     public function pay(){
+        $order_id = I('id');
+
+        $orderModel = D('OrderMst');
+        $order = $orderModel->getOrderById($this->user['id'], $order_id);
+
+        $jsApiParameters = $this->wxPay($order);
+        $this->writeLog('========prepay:'.$jsApiParameters);
+        die(json_encode([
+            'success' => true,
+            'order_no' => $order['order_no'],
+            'jsApi' => $jsApiParameters
+        ]));
         $this->display();
     }
 
@@ -69,7 +81,7 @@ class PayController extends HomeBaseController {
 
         $wxpayUtil->openId = $this->user['openid'];
         $wxpayUtil->outTradeNo = $orderInfo['order_no'];
-        if(C('IS_TEST')) {
+        if(C('TEST_PAY')) {
             $wxpayUtil->body = '拼了嘛测试订单微信支付';
             $wxpayUtil->totalFee = 1;
         } else {
@@ -113,7 +125,11 @@ class PayController extends HomeBaseController {
 
     protected function notifySuccessOrderAct($out_trade_no, $trade_no, $outsidePayTotal) {
         $orderModel = D('OrderMst');
+        $order = $orderModel->getOrderByNumber($out_trade_no, 'product_mst_id,room_num');
         $orderModel->OrderPaySuccess($out_trade_no, $trade_no, $outsidePayTotal);
+
+        $productModel = D('ProductMst');
+        $productModel->updateSaledById($order['product_mst_id'], $order['room_num']);
 
         $this->writeLog('----- pay order finish ----- order number:'.$out_trade_no);
         $this->writeLog('----- pay order finish ----- order trade_no:'.$trade_no);

@@ -257,48 +257,6 @@
 
             <?php endif;?>
         });
-
     })
-
-    var appId = '';
-    var timeStamp = '';
-    var nonceStr = '';
-    var package = '';
-    var signType = '';
-    var paySign = '';
-    var result = '';
-    var order_no = '';
-
-    //调用微信JS api 支付
-    function jsApiCall()
-    {
-        WeixinJSBridge.invoke(
-                'getBrandWCPayRequest',
-                result,
-                function(res){
-                    WeixinJSBridge.log(res.err_msg);
-                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-//                        $('.success').removeClass('disnone');
-                        window.location.href='/pay/success.html?ono='+order_no;
-                    }else{
-//                        $('.alertcancel').show().fadeOut(3000);
-                        myjs.showDialog('支付失败,请稍后再试');
-                    }
-                }
-        );
-    }
-
-    function callpay()
-    {
-        if (typeof WeixinJSBridge == "undefined"){
-            if( document.addEventListener ){
-                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
-            }else if (document.attachEvent){
-                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
-                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
-            }
-        }else{
-            jsApiCall();
-        }
-    }
 </script>
+<script type="text/javascript" src="__JS__/wxpay.js"></script>

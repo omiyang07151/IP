@@ -9,6 +9,7 @@ else {
 $config = array(
 
     'IS_TEST' => true,
+    'TEST_PAY' => true,
 
 	//'配置项'=>'配置值'
     'DEFAULT_MODULE'     => 'Home',
