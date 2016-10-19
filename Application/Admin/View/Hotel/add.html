@@ -6,6 +6,7 @@
 <div class="row">
     <div class="widget-main no-padding">
         <form class="form-horizontal" action="{:ADMIN_U('hotel/save')}" method="post"  data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+            <input type="hidden" name="id" value="{:$data['id']}">
             <fieldset>
                 <div class="form-group">
                     <label for="province_sel"  class="col-sm-2 control-label no-padding-left">请选省份</label>
