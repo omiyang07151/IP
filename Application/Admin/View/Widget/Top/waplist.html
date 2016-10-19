@@ -1,0 +1,138 @@
+<div class="wap-list">
+    <div class="box">
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/1.png" /><div class="more">[更多]</div></div>
+            <div class="pt3 pt">
+                <?php if(!empty($effects)): ?>
+                    <?php $effectIndex = 1;?>
+                    <?php foreach($effects as $effectItem): ?>
+                        <?php if($effectIndex == 4): ?>
+                            <div class="over">
+                        <?php endif; ?>
+                        <a href="{:SHOP_U('/gongxiao/'.$effectItem['pinyin'])}" onclick="mz_normal('移动端功效<?php echo $effectItem['name'];?>','点击')"><?php echo $effectItem['name'];?></a>
+                        <?php $effectIndex++;?>
+                    <?php endforeach; ?>
+
+                    <?php if($effectIndex > 3): ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/2.png" /><div class="more">[更多]</div></div>
+            <div class="pt2 pt">
+                <?php if(!empty($series)): ?>
+                <?php $seriesIndex = 1;?>
+                <?php foreach($series as $seriesItem): ?>
+                <?php if($seriesIndex == 3): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/xilie/'.$seriesItem['pinyin'])}" onclick="mz_normal('移动端系列<?php echo $seriesItem['name'];?>','点击')"><?php echo $seriesItem['name'];?></a>
+                    <?php $seriesIndex++;?>
+                    <?php endforeach; ?>
+
+                <?php if($seriesIndex > 2): ?>
+                </div>
+                <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/3.png" /><div class="more">[更多]</div></div>
+            <div class="pt4 pt">
+                <?php if(!empty($bztypes)): ?>
+                <?php $bzIndex = 1;?>
+                <?php foreach($bztypes as $bztypesItem): ?>
+                <?php if($bzIndex == 5): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/'.$bztypesItem['pinyin'])}" onclick="mz_normal('移动端步骤<?php echo $bztypesItem['name'];?>','点击')"><?php echo $bztypesItem['name'];?></a>
+                    <?php $bzIndex++;?>
+                    <?php endforeach; ?>
+                    <?php if($bzIndex > 4): ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/4.png" /><div class="more">[更多]</div></div>
+            <div class="pt3 pt">
+                <?php if(!empty($cjtypes)): ?>
+                <?php $cjIndex = 1;?>
+                <?php foreach($cjtypes as $cjtypesItem): ?>
+                <?php if($cjIndex == 4): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/'. $cjtypesItem['pinyin'])}" onclick="mz_normal('移动端场景<?php echo $cjtypesItem['name'];?>','点击')"><?php echo $cjtypesItem['name'];?></a>
+                    <?php $cjIndex++;?>
+                    <?php endforeach; ?>
+                    <?php if($cjIndex > 3): ?>
+                </div>
+                <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/5.png" /><div class="more">[更多]</div></div>
+            <div class="pt3 pt">
+                <?php if(!empty($nltypes)): ?>
+                <?php $nlIndex = 1;?>
+                <?php foreach($nltypes as $nltypesItem): ?>
+                <?php if($nlIndex == 4): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/'.$nltypesItem['pinyin'])}" onclick="mz_normal('移动端年龄<?php echo $nltypesItem['name'];?>','点击')"><?php echo $nltypesItem['name'];?></a>
+                    <?php $nlIndex++;?>
+                    <?php endforeach; ?>
+                    <?php if($nlIndex > 3): ?>
+                </div>
+                <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/6.png" /><div class="more">[更多]</div></div>
+            <div class="pt4 pt">
+                <?php if(!empty($fztypes)): ?>
+                <?php $fzIndex = 1;?>
+                <?php foreach($fztypes as $fztypesItem): ?>
+                <?php if($fzIndex == 5): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/'.$fztypesItem['pinyin'])}" onclick="mz_normal('移动端肤质<?php echo $fztypesItem['name'];?>','点击')"><?php echo $fztypesItem['name'];?></a>
+                    <?php $fzIndex++;?>
+                    <?php endforeach; ?>
+                    <?php if($fzIndex > 4): ?>
+                </div>
+                <?php endif; ?>
+                <?php endif; ?>
+
+            </div>
+        </div>
+        <div class="part">
+            <div class="title"><img class="name" src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/list/7.png" /><div class="more">[更多]</div></div>
+            <div class="pt4 pt" style="margin-bottom: 80px;">
+                <?php if(!empty($jgtypes)): ?>
+                <?php $jgIndex = 1;?>
+                <?php foreach($jgtypes as $jgtypesItem): ?>
+                <?php if($jgIndex == 5): ?>
+                <div class="over">
+                    <?php endif; ?>
+                    <a href="{:SHOP_U('/'.$jgtypesItem['pinyin'])}" onclick="mz_normal('移动端价格<?php echo $jgtypesItem['name'];?>','点击')"><?php echo $jgtypesItem['name'];?></a>
+                    <?php $jgIndex++;?>
+                    <?php endforeach; ?>
+                    <?php if($jgIndex > 4): ?>
+                </div>
+                <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="close"><img src="<?php echo C('CDN_DOMAIN');?>/Assets/Common/images/wap/close.png" /></div>
+</div>

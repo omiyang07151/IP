@@ -1,0 +1,24 @@
+
+<input
+    name="{$name}"
+    type="text"
+    value="{$value}"
+<?php if(!empty($attr)){
+    foreach($attr as $key=>$val){
+        if(is_array($val)){
+           echo $key.'="'.implode(' ', $val).'"';
+        }
+        else {
+            echo $key.'="'.$val.'"';
+        }
+    }
+}
+?>
+/>
+
+<script type="text/javascript">
+$(function() {
+    window.prettyPrint && prettyPrint();
+    $('.default-date-picker').datepicker({dateFormat:"yy-mm-dd"});
+})
+</script>

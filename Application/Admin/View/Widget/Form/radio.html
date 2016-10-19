@@ -1,0 +1,20 @@
+<div class="flat-green single-row icheck" style="margin-left: 10px;">
+    <?php foreach($options as $key=>$val):?>
+    <div>
+        <input type="radio"  name="{$name}" value="{$key}" <?php if($key==$value){echo "checked";}?>>
+        <label>{$val}</label>
+    </div>
+    <?php endforeach;?>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.flat-green input').iCheck({
+            checkboxClass: 'icheckbox_flat-green',//千万别删
+            radioClass: 'iradio_flat-green'
+        });
+
+
+    });
+</script>

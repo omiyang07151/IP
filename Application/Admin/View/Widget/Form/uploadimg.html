@@ -1,0 +1,39 @@
+<input type="file" name="file" id="{$id}_file" />
+<input type="hidden"
+       name="{$name}"
+       id="{$id}"
+       value="{$value}"
+<?php if(!empty($attr)){
+        foreach($attr as $key=>$val){
+            if(is_array($val)){
+                echo $key.'="'.implode(' ', $val).'"';
+            }
+            else {
+                echo $key.'="'.$val.'"';
+            }
+        }
+}
+?>
+>
+<div id="{$id}_pic" style="<?php if(empty($value)){echo 'display:none;';}?> float:left;padding:10px;margin-top:5px;border:1px solid rgba(0, 0, 0, 0.03); background-color: #F7F7F7; border-radius:5px; width:100%;">
+<?php if(!empty($value)):?>
+    <div style='float:left;background-color: white; border: 1px solid rgb(255,255,255, 0.8);'>
+        <img style='border:1px solid #ccc; width:150px; padding:5px;' src='{$prefix}{$value}'>
+    </div>
+<?php endif;?>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#{$id}_file").AjaxFileUpload({
+            action: "{$action}",
+            onComplete: function(filename, response) {
+                /*console.log(filename);
+                console.log(response);*/
+
+                $('#{$id}_pic').show();
+                $('#{$id}_pic').html("<div style='float:left;background-color: white; border: 1px solid rgb(255,255,255, 0.8);'><img style='border:1px solid #ccc; width:150px; padding:5px;' src='"+response.url+"'></div>");
+                $('#{$id}').val(response.uri);
+            }
+        });
+    });
+</script>

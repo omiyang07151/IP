@@ -213,7 +213,7 @@ class BaseModel extends Model {
 
     public function buildSelectOptions($field, $where=null, $value=null, $order=null){
         if (empty($where)) {
-            $where = 'deleted is null';
+            $where = 'del_flag = 0';
         }
         //获取数据表名
         $this->getTableName();
@@ -318,6 +318,19 @@ class BaseModel extends Model {
         return $result;
     }
 
+    public function adminPageData($where, $fields=null, $order=null, $page=1, $size=10){
+
+        $result['iTotalRecords'] = $size;
+        $result['iTotalDisplayRecords']= $this->getCount($where);
+        $result['aaData'] = $this->getList($where, null, $fields, $order, $page, $size);
+
+        if(empty($result['aaData'])){
+            $result['aaData']=array();
+        }
+
+        return $result;
+    }
+
     public function update($data){
         $pk = $this->getPk();
         if (empty($data[$pk])) {
@@ -377,5 +390,6 @@ class BaseModel extends Model {
             return intval($num)/100;
         }
     }
+
 }
 

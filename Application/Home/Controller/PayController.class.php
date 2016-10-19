@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Common\Util\WxpayUtil\WxpayUtil;
+use Common\Controller\HomeBaseController;
 
 class PayController extends HomeBaseController {
 

@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 
+use Common\Controller\HomeBaseController;
 class BookingController extends HomeBaseController {
 
     public function index(){

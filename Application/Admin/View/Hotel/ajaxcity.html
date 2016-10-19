@@ -1,0 +1,8 @@
+<label for="city_sel" class="col-sm-2 control-label no-padding-left">请选城市</label>
+<select id="city_sel" name="sys_city_id" style="width: 300px;" data-rule="required">
+    <option value="">请选城市</option>
+    <?php
+    foreach($cityList as $k=>$v){
+        echo '<option value="'.$k.'">'.$v.'</option>';
+    }?>
+</select>

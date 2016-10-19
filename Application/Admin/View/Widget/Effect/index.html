@@ -1,0 +1,75 @@
+<?php $titleIndex=3;?>
+<?php $effectNum=0;?>
+<?php foreach($effects as $effectItem): ?>
+<?php $effectNum++;?>
+
+<div class="menu-tit <?php if($effectNum == 7): ?>last<?php endif;?>">
+    <a href="{:SHOP_U('/gongxiao/'.$effectItem['pinyin'])}" onclick="mz_normal('<?php echo $effectItem['name'];?>分类','点击')">
+        <img class="on" src="<?php echo C('CDN_DOMAIN');?>/Assets/Shop/images/title/sc_<?php echo sprintf('%02d',$titleIndex)?>.png" />
+        <?php $titleIndex++;?>
+        <img class="off" src="<?php echo C('CDN_DOMAIN');?>/Assets/Shop/images/title/sc_<?php echo sprintf('%02d',$titleIndex)?>.png" />
+        <?php $titleIndex++;?>
+    </a>
+    <div class="bar">
+        <div class="line"><img src="<?php echo C('CDN_DOMAIN');?>/Assets/Shop/images/downlist/line.png" /></div>
+        <div class="bar-box">
+            <div class="left">
+                <ul class="bar-1">
+                    <div class="title">按步骤分类</div>
+                    <li class="all">
+                        <a href="{:U('/gongxiao/'.$effectItem['pinyin'])}" onclick="mz_normal('<?php echo $effectItem['name'];?>按步骤全部','点击')">全部</a>
+                    </li>
+                    <li></li>
+                    <?php foreach($steps as $stepItem): ?>
+                        <li><a href="{:U('/'. $stepItem['pinyin'])}?ect=<?php echo $effectItem['id'];?>"  onclick="mz_normal('<?php echo $effectItem['name'];?>按步骤<?php echo $stepItem['name'];?>','点击')">{$stepItem['name']}</a></li>
+                    <?php endforeach; ?>
+                    <!--<li></li>-->
+                    <!--<li>洁面乳</li>-->
+                    <!--<li>眼霜</li>-->
+                    <!--<li>化妆水</li>-->
+                    <!--<li>面膜</li>-->
+                    <!--<li>乳液</li>-->
+                    <!--<li>防晒</li>-->
+                    <!--<li>面霜</li>-->
+                    <!--<li>轻彩妆</li>-->
+                    <!--<li>喷雾</li>-->
+                    <!--<li>手部护理</li>-->
+                    <!--<li>精华</li>-->
+                    <!--<li>身体护理</li>-->
+                    <!--<li>精油</li>-->
+                </ul>
+                <ul class="bar-2">
+                    <div class="title">按系列分类</div>
+                    <li class="all"><a href="{:U('/gongxiao/'. $effectItem['pinyin'])}?series=a" onclick="mz_normal('<?php echo $effectItem['name'];?>按系列全部','点击')">全部</a></li>
+                    <?php foreach($effectItem['series'] as $seriesItem): ?>
+                        <li>
+                            <a href="{:U('/xilie/'.$seriesItem['pinyin'])}" onclick="mz_normal('<?php echo $effectItem['name'];?>按系列<?php echo $seriesItem['name'];?>','点击')"><?php echo $seriesItem['name'];?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <ul class="bar-3">
+                    <div class="title">按肤质分类</div>
+                    <li class="all"><a href="{:U('/gongxiao/'.$effectItem['pinyin'])}" onclick="mz_normal('<?php echo $effectItem['name'];?>按肤质全部','点击')">全部</a></li>
+                    <?php foreach($skins as $skinItem): ?>
+                    <li><a href="{:U('/'.$skinItem['pinyin'])}" onclick="mz_normal('<?php echo $effectItem['name'];?>按系列<?php echo $skinItem['name'];?>','点击')">{$skinItem['name']}</a></li>
+                    <?php endforeach; ?>
+                    <!--<li>极干性</li>-->
+                    <!--<li>干性</li>-->
+                    <!--<li>油性</li>-->
+                    <!--<li>混合</li>-->
+                    <!--<li>敏感</li>-->
+                </ul>
+            </div>
+            <div class="right">
+                <img class="barline" src="<?php echo C('CDN_DOMAIN');?>/Assets/Shop/images/downlist/img.png" />
+                <?php if(!empty($effectItem['pic_1']) && !empty($effectItem['productid_1'])): ?>
+                    <a class="rimg" href="{:SHOP_U('/product/'.$effectItem['productid_1'])}" onclick="mz_normal('商品详细信息','点击')"><img style="width:208px;height:117px;" src="{:IMG_U($effectItem['pic_1'])}" /></a>
+                <?php endif;?>
+                <?php if(!empty($effectItem['pic_2']) && !empty($effectItem['productid_2'])): ?>
+                    <a class="rimg" href="{:SHOP_U('/product/'.$effectItem['productid_2'])}" onclick="mz_normal('商品详细信息','点击')"><img style="width:208px;height:117px;" src="{:IMG_U($effectItem['pic_2'])}" /></a>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>

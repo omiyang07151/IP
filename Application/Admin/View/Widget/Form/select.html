@@ -1,0 +1,21 @@
+<select name="{$name}" autocomplete="off"
+<?php
+if(!empty($attr)){
+    foreach($attr as $key=>$val){
+        if(is_array($val)){
+            echo $key.'="'.implode(' ', $val).'"';
+        }
+        else {
+            echo $key.'="'.$val.'"';
+        }
+    }
+}
+?>
+>
+    <?php if($show_all):?>
+    <option value="">{$all_text}</option>
+    <?php endif;?>
+    <?php foreach($options as $key=>$val):?>
+    <option value="{$key}" <?php if($key==$value & $value !==null && $value!==''){echo "selected";}?>>{$val}</option>
+    <?php endforeach;?>
+</select>

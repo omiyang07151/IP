@@ -1,0 +1,44 @@
+<div class="input-group input-large custom-date-range" style="width:400px" data-date-format="yyyy-mm-dd">
+    <input type="text"
+           name="{$name_from}"
+           id="{$id_from}"
+           value="{$value[0]}"
+           placeholder="{$holder[0]}"
+    <?php if(!empty($attr)){
+        foreach($attr as $key=>$val){
+            if(is_array($val)){
+                echo $key.'="'.implode(' ', $val).'"';
+            }
+            else {
+                echo $key.'="'.$val.'"';
+            }
+        }
+    }
+    ?>
+    >
+    <span class="input-group-addon">To</span>
+    <input type="text"
+           name="{$name_to}"
+           id="{$id_to}"
+           value="{$value[1]}"
+           placeholder="{$holder[1]}"
+    <?php if(!empty($attr)){
+        foreach($attr as $key=>$val){
+            if(is_array($val)){
+                echo $key.'="'.implode(' ', $val).'"';
+            }
+            else {
+                echo $key.'="'.$val.'"';
+            }
+        }
+    }
+    ?>
+    >
+</div>
+
+<script type="text/javascript">
+$(function() {
+    var checkin = $('#{$id_from}').datepicker({dateFormat:"yy-mm-dd"});
+    var checkout = $('#{$id_to}').datepicker({dateFormat:"yy-mm-dd"});
+})
+</script>

@@ -1,0 +1,193 @@
+<?php
+$no_visible_elements=true;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>拼了嘛后台管理系统</title>
+    <meta name="keywords" content="拼了嘛后台管理系统" />
+    <meta name="description" content="拼了嘛后台管理系统" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="__CSS__/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__CSS__/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="__CSS__/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <!-- fonts -->
+
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="__CSS__/ace.min.css" />
+    <link rel="stylesheet" href="__CSS__/ace-rtl.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="__CSS__/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="__JS__/html5shiv.js"></script>
+    <script src="__JS__/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="login-layout" style="background-color: #f5f5f5;">
+<div class="main-container">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                    <div class="center">
+                        <h1>
+
+                            <span class="blue">拼了嘛后台管理系统</span>
+                        </h1>
+                        <h4 class="blue">&copy;  拼了嘛</h4>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="position-relative">
+                        <div id="login-box" class="login-box visible widget-box no-border" style="background-color: #478fca;">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header blue lighter bigger">
+                                        <i class="icon-coffee green"></i>
+                                        请输入登录信息
+                                    </h4>
+
+                                    <div class="space-6"></div>
+
+                                    <form method="post" data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+                                        <fieldset>
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="username" id="username"  class="form-control" placeholder="用户名" data-rule="required;length[~6]" />
+															<i class="icon-user"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control"  name="password" id="password" placeholder="密码" data-rule="密码:required;length[~20];"/>
+															<i class="icon-lock"></i>
+														</span>
+                                            </label>
+
+                                            <div class="space"></div>
+
+                                            <div class="clearfix">
+
+
+                                                <button type="submit" id="loading-btn" class="width-35 pull-right btn btn-sm btn-primary" data-loading-text="登陆中">
+                                                    <i class="icon-key"></i>
+                                                    登录
+                                                </button>
+                                            </div>
+
+                                            <div class="space-4"></div>
+                                        </fieldset>
+                                    </form>
+
+                                    <div class="alert alert-danger" style="display: none;">
+
+                                    </div>
+
+                                </div><!-- /widget-main -->
+
+
+                            </div><!-- /widget-body -->
+                        </div><!-- /login-box -->
+                    </div><!-- /position-relative -->
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+
+<script src="__JS__/jquery2.0.3.min.js"></script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="__JS__/jquery1.10.2.min.js"></script>
+<![endif]-->
+
+<!--[if !IE]> -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='__JS__/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='__JS__/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<script src="__JS__/validator-0.7.0/jquery.validator.js"></script>
+<script type="text/javascript" src="__JS__/validator-0.7.0/local/zh_CN.js"></script>
+<link href="__JS__/validator-0.7.0/jquery.validator.css" rel="stylesheet">
+<script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='__JS__/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+    function show_box(id) {
+        jQuery('.widget-box.visible').removeClass('visible');
+        jQuery('#'+id).addClass('visible');
+    }
+
+    $(document).ready(function(e){
+        $('form').validator({
+            msgClass: "n-bottom",
+
+            valid: function(form){
+                $.ajax({
+                    url: '{:ADMIN_U("/login/dologin")}',
+                    type: 'POST',
+                    dataType:"json",
+                    jsonp: "callback",
+                    data: $(form).serialize(),
+                    success: function(result){
+                        if(result.success)
+                        {
+                            window.location.href='{:ADMIN_U("/index")}';
+                        }
+                        else
+                        {
+                            $('.alert').html("用户名或密码不正确！");
+                            $('.alert').show();
+                        }
+                    }
+                });
+            }
+        });
+
+
+    })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<div class="page-header">
+    <h1>
+        添加/编辑酒店
+    </h1>
+</div>
+<div class="row">
+    <div class="widget-main no-padding">
+        <form class="form-horizontal" action="{:ADMIN_U('hotel/save')}" method="post"  data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+            <fieldset>
+                <div class="form-group">
+                    <label for="province_sel"  class="col-sm-2 control-label no-padding-left">请选省份</label>
+                    <select id="province_sel" name="sys_province_id" autocomplete="off" style="width: 300px;" data-rule="required">
+                        <option value="">请选省份</option>
+                        <?php foreach($provinceList as $k=>$v) {
+                            if ($data['sys_province_id'] == $k) {
+                                echo '<option value="' . $k . '" selected>' . $v . '</option>';
+                            }
+                            else {
+                                echo '<option value="' . $k . '">' . $v . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group" id="city_sel_div">
+                    <label for="city_sel" id="city_sel_label"  class="col-sm-2 control-label no-padding-left">请选城市</label>
+                    <select id="city_sel" name="sys_city_id" autocomplete="off" style="width: 300px;" data-rule="required">
+                        <option value="">请选城市</option>
+                        <?php if(!empty($cityList)){
+                            foreach($cityList as $k=>$v){
+                                if($data['sys_city_id']==$k){
+                                    echo '<option value="'.$k.'" selected >'.$v.'</option>';
+                                }
+                                else {
+                                    echo '<option value="'.$k.'">'.$v.'</option>';
+                                }
+
+                            }
+                        }?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name"  class="col-sm-2 control-label no-padding-left">酒店名称</label>
+                    <input type="text" id="name" name="name" class="input-xlarge"  data-rule="required" value="<?=$data['name']?>">
+                </div>
+                <div class="form-group">
+                    <label for="intro" class="col-sm-2 control-label no-padding-left">酒店简介</label>
+                    <div style="float:left;width:750px;">
+                        <textarea name="intro" style="width:100%;">{:$data['intro']}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editorlightspot" class="col-sm-2 control-label no-padding-left">酒店亮点</label>
+                    <div style="float:left;width:750px;">
+                        <script id="editorlightspot" name="lightspot" type="text/plain" style="width:100%;height:500px;z-Index:1;">{:$data['lightspot']}</script>
+                    </div>
+                    <script type="text/javascript">
+
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var editorName =  'editorlightspot';
+                        var uelightspot = UE.getEditor(editorName,{zIndex:1});
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="editortraffic" class="col-sm-2 control-label no-padding-left">交通信息</label>
+                    <div style="float:left;width:750px;">
+                        <script id="editortraffic" name="traffic" type="text/plain" style="width:100%;height:500px;z-Index:1;">{:$data['traffic']}</script>
+                    </div>
+                    <script type="text/javascript">
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var editorName =  'editortraffic';
+                        var uelightspot = UE.getEditor(editorName,{zIndex:1});
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="name"  class="col-sm-2 control-label no-padding-left">酒店设施</label>
+                    <div style="width:750px;">
+                    <?php foreach($iconList as $icon):?>
+                        <label style="margin-right:5px;"><input type="checkbox" name="facility[]" value="{:$icon['value']}" />{:$icon['name']}</label>
+                    <?php endforeach;?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editoraround" class="col-sm-2 control-label no-padding-left">周边设施</label>
+                    <div style="float:left;width:750px;">
+                        <script id="editoraround" name="around" type="text/plain" style="width:100%;height:500px;z-Index:1;">{:$data['around']}</script>
+                    </div>
+                    <script type="text/javascript">
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var editorName =  'editoraround';
+                        var uelightspot = UE.getEditor(editorName,{zIndex:1});
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="editorpolicy" class="col-sm-2 control-label no-padding-left">酒店政策</label>
+                    <div style="float:left;width:750px;">
+                        <script id="editorpolicy" name="policy" type="text/plain" style="width:100%;height:500px;z-Index:1;">{:$data['policy']}</script>
+                    </div>
+                    <script type="text/javascript">
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var editorName =  'editorpolicy';
+                        var uelightspot = UE.getEditor(editorName,{zIndex:1});
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="editorrefund" class="col-sm-2 control-label no-padding-left">退款政策</label>
+                    <div style="float:left;width:750px;">
+                        <script id="editorrefund" name="refund" type="text/plain" style="width:100%;height:500px;z-Index:1;">{:$data['refund']}</script>
+                    </div>
+                    <script type="text/javascript">
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var editorName =  'editorrefund';
+                        var uelightspot = UE.getEditor(editorName,{zIndex:1});
+                    </script>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">保存</button>
+                    <button class="btn" type="button" onclick="window.location.href='{:ADMIN_U('manager/product')}'">返回</button>
+                </div>
+
+            </fieldset>
+       </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+    $(function(){
+        $('#province_sel').change(function(){
+            val = $(this).val();
+            $.ajax({
+                url: '{:ADMIN_U("/hotel/ajaxcity")}',
+                type: 'POST',
+                dataType:"html",
+                jsonp: "callback",
+                data: "province_id="+val,
+                success: function(result){
+                    $('#city_sel_div').html(result);
+                }
+            });
+        })
+    });
+</script>
+

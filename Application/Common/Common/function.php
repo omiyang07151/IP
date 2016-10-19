@@ -159,3 +159,14 @@ function mbSub($str, $maxlen, $start=0){
         return $str;
     }
 }
+
+function ADMIN_U($url='',$vars='', $https=true,$suffix=true){
+    $url = U('/admin/'.$url, $vars,$suffix);
+    return $url;
+//    $domain = C('SHOP_DOMAIN');
+//    $is_debug = C('IS_DEBUG');
+//    if($is_debug){
+//        $https = false;
+//    }
+//    return ($https ? 'https://':'http://').$domain.$url;
+}

@@ -1,0 +1,35 @@
+.box-search{
+padding:10px 0 0;
+}
+.form-horizontal {
+margin-bottom: 0px;
+}
+.form-actions {
+margin-bottom: 0px;
+}
+.form-horizontal .form-actions {
+padding-left: 20px;
+}
+.form-horizontal .control-label {
+width:auto;min-width: 80px;
+}
+.form-horizontal .controls {
+    margin-left:120px;
+}
+.form-horizontal .search-controls {
+    float: left;
+    margin-left: 10px;
+}
+.control-group {
+width:auto;margin-left:20px;
+}
+textarea {
+    width:300px;
+    height:200px;
+    display: block;
+    resize: none;
+}
+.timetable td,th{
+
+    border: 1px solid #ccc;
+}

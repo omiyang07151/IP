@@ -19,4 +19,28 @@ class BaseController extends Controller{
         \Think\Log::write($string,\Think\Log::INFO,'',$destination);
     }
 
+    public function success_json($data=null){
+        $result['success']=true;
+        if(!empty($data)){
+            $result['data']=$data;
+        }
+        header("Content-Type:text/html; charset=utf-8");
+        exit(json_encode($result));
+    }
+
+    public function error_json($data=null){
+        $result['success']=false;
+        if(!empty($data)){
+            $result['data']=$data;
+        }
+        header("Content-Type:text/html; charset=utf-8");
+        exit(json_encode($result));
+    }
+
+    public function jsonpajax($data=array())
+    {
+        header("Content-Type:text/html; charset=utf-8");
+        $callback = $_GET["callback"];
+        exit($callback.'('.json_encode($data).')');
+    }
 }
