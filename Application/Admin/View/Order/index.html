@@ -1,0 +1,71 @@
+<script language="javascript">
+    $(document).ready(function(){
+
+        var tabl= Datasource.Ordertable();
+        $("#searchbtn").click(function(){
+            tabl.fnDraw();
+        })
+        $(".resetbtn").click(function(){
+            CommonUtil.formclear('searchform')
+            tabl.fnDraw();
+        })
+
+
+    })
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="CommonUtil.formclear('searchform')" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="searchform">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="name"   class="col-md-2 control-label no-padding-right">产品名称:</label>
+                            <input type="text" id="title" value="<?=$condition['title']?>" name="condition[title]" class="input-xlarge" style="width:170px ">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="CommonUtil.formclear('searchform')">关闭</button>
+                <button type="button" class="btn btn-primary resetbtn" >重置</button>
+                <button type="button" class="btn btn-success" id="searchbtn">搜索</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">订单列表</h3>
+        <button class="btn btn-sm btn-purple" data-toggle="modal" data-target="#myModal"><i class="ace-icon fa fa-search    bigger-100"></i>搜索</button>
+        <button type="button" class="btn btn-success  btn-sm  resetbtn"><i class="ace-icon fa fa-refresh   bigger-100"></i>刷新</button>
+        <div class="table-responsive">
+            <table id="sample-table-2" class="table table-striped table-bordered table-hover datatable">
+                <thead>
+                <tr>
+                    <th width="3%">订单编号</th>
+                    <th width="14%">产品名称</th>
+                    <th width="5%">数量</th>
+                    <th width="5%">床型</th>
+                    <th width="5%">总价</th>
+                    <th width="10%">入住时间</th>
+                    <th width="10%">联系人</th>
+                    <th width="10%">下单时间</th>
+                    <th width="7%">状态</th>
+                    <th width="10%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div><!--/row-->

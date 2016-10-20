@@ -1,0 +1,199 @@
+<div class="page-header">
+    <h1>
+        添加/编辑产品
+    </h1>
+</div>
+<div class="row">
+    <div class="widget-main no-padding">
+        <form class="form-horizontal" action="{:ADMIN_U('product/save')}" method="post"  data-validator-option="{theme:'yellow_right_effect',stopOnError:true}">
+            <input type="hidden" name="id" value="{:$data['id']}">
+            <fieldset>
+                <div class="form-group">
+                    <label for="Sys_province_id"  class="col-sm-2 control-label no-padding-left">请选省份</label>
+                    {:W('Form/select', ['sys_province_id', $provinceList, $data['sys_province_id'], ['class'=>['form-control','diypage-input'],'style'=>'width:300px;','show_all'=>true, 'all_text'=>'请选择省份']])}
+
+                </div>
+                <div class="form-group" id="city_sel_div">
+                    <label for="city_sel" id="city_sel_label"  class="col-sm-2 control-label no-padding-left">请选城市</label>
+                    {:W('Form/select', ['sys_city_id', $cityList, $data['sys_city_id'], ['class'=>['form-control','diypage-input'],'style'=>'width:300px;','show_all'=>true, 'all_text'=>'请选择城市']])}
+                </div>
+                <div class="form-group" id="hotel_sel_div">
+                    <label for="hotel_mst_id" id="hotel_mst_id_label"  class="col-sm-2 control-label no-padding-left">请选酒店</label>
+                    {:W('Form/select', ['hotel_mst_id', $hotelList, $data['hotel_mst_id'], ['class'=>['form-control','diypage-input'],'style'=>'width:300px;','show_all'=>true, 'all_text'=>'请选择酒店']])}
+                </div>
+
+                <div class="form-group">
+                    <label for="title"  class="col-sm-2 control-label no-padding-left">产品名称</label>
+                    <input type="text" id="title" name="title" class="input-xlarge"  data-rule="required" value="<?=$data['title']?>">
+                </div>
+                <div class="form-group">
+                    <label for="intro" class="col-sm-2 control-label no-padding-left">产品简介</label>
+                    <div style="float:left;width:750px;">
+                        <textarea name="intro" style="width:100%;">{:$data['intro']}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title"  class="col-sm-2 control-label no-padding-left">产品封面</label>
+                    {:W('Form/uploadimg', ['coverimg',$data['coverimg'],['category'=>'product'],$prefix])}
+                </div>
+                <div class="form-group">
+                    <label for="intro" class="col-sm-2 control-label no-padding-left">详情页多图</label>
+                    {:W('Form/uploadmultipleimgs', ['images','picSort',$data['images']])}
+                </div>
+
+                <div class="form-group">
+                    <label for="detail" class="col-sm-2 control-label no-padding-left">产品详情</label>
+                    {:W('Form/richtext', ['detail',$data['detail']])}
+                </div>
+
+                <div class="form-group">
+                    <label for="market_price"  class="col-sm-2 control-label no-padding-left">市场价</label>
+                    <input type="text" id="market_price" name="market_price" class="input-xlarge"  data-rule="required" value="<?=$data['market_price']?>">
+                </div>
+                <div class="form-group">
+                    <label for="p_price"  class="col-sm-2 control-label no-padding-left">拼团价</label>
+                    <input type="text" id="p_price" name="p_price" class="input-xlarge"  data-rule="required" value="<?=$data['p_price']?>">
+                </div>
+                <div class="form-group" id="price_group">
+                    <label for="sp_price" class="col-sm-2 control-label no-padding-left">特别日价格</label>
+
+                    <button class="btn btn-primary btn-sm" id="add_time_price" type="button">增加特别价</button>
+
+                    <?php if(!empty($data['sp_price'])){ ?>
+                    <?php $indx = 1;?>
+                    <?php foreach($data['sp_price'] as $time_price){ ?>
+                    <div class="controls sp_price"  style="padding-top:6px;padding-bottom: 6px;">
+                        时间日：
+                        <select name="sp_price[<?php echo $indx;?>][start_weekday]" style="width:5em">
+                            <?php foreach($weekdays as $wd_k => $wd){ ?>
+                            <option value="<?php echo $wd_k;?>" <?php if($time_price['start_weekday']==$wd_k) echo "selected";?>><?php echo $wd;?></option>
+                            <?php } ?>
+                        </select>~
+                        <select name="sp_price[<?php echo $indx;?>][end_weekday]" style="width:5em">
+                            <?php foreach($weekdays as $wd_k => $wd){ ?>
+                            <option value="<?php echo $wd_k;?>" <?php if($time_price['end_weekday']==$wd_k) echo "selected";?>><?php echo $wd;?></option>
+                            <?php } ?>
+                        </select>
+
+                        价格：
+                        <input name="sp_price[<?php echo $indx;?>][new_price]" type="text" style="width:10em" value="<?php echo $time_price['new_price'];?>">
+                        <button class="btn btn-danger btn-xs re_time_price"  type="button"><i class="ace-icon glyphicon glyphicon-remove"></i></button>
+                    </div>
+                    <?php $indx++;?>
+                    <?php } ?>
+                    <?php } ?>
+                </div>
+                <div class="form-group">
+                    <label for="p_price"  class="col-sm-2 control-label no-padding-left">最低拼团数</label>
+                    <input type="text" id="limit_num" name="limit_num" class="input-xlarge"  data-rule="required" value="<?=$data['limit_num']?>">
+                </div>
+                <div class="form-group">
+                    <label for="p_price"  class="col-sm-2 control-label no-padding-left">最大拼团数</label>
+                    <input type="text" id="max_num" name="max_num" class="input-xlarge" value="<?=$data['max_num']?>">
+                </div>
+                <div class="form-group">
+                    <label for="startd" class="col-sm-2 control-label no-padding-left">预售开始时间</label>
+                    <input type="text" class="input-xlarge datetimepicker" name="startd"   id="startd" value="<?=$data['startd']?>" data-rule="required">
+                </div>
+                <div class="form-group">
+                    <label for="endd" class="col-sm-2 control-label no-padding-left">预售结束时间</label>
+                    <input type="text" class="input-xlarge datetimepicker" name="endd"   id="endd" value="<?=$data['endd']?>" data-rule="required">
+                </div>
+                <div class="form-group">
+                    <label for="checkin_start" class="col-sm-2 control-label no-padding-left">入住开始时间</label>
+                    <input type="text" class="input-xlarge datetimepicker" name="checkin_start"   id="checkin_start" value="<?=$data['checkin_start']?>" data-rule="required">
+                </div>
+                <div class="form-group">
+                    <label for="checkin_start" class="col-sm-2 control-label no-padding-left">入住截止时间</label>
+                    <input type="text" class="input-xlarge datetimepicker" name="checkin_end"   id="checkin_end" value="<?=$data['checkin_end']?>" data-rule="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="checkin_start" class="col-sm-2 control-label no-padding-left">是否需要填写门票信息</label>
+                    {:W('Form/radio', ['is_need_id', ['0'=>'不需要','1'=>'需要'], $data['is_need_id']])}
+                </div>
+                <div class="form-group">
+                    <label for="one_id_ticket" class="col-sm-2 control-label no-padding-left">一个ID对应门票数</label>
+                    <input type="text" id="one_id_ticket" name="one_id_ticket" class="input-xlarge" value="<?=$data['one_id_ticket']?>">
+                </div>
+                <div class="form-group">
+                    <label for="ticket_intro" class="col-sm-2 control-label no-padding-left">门票使用说明</label>
+                    {:W('Form/richtext', ['ticket_intro',$data['ticket_intro']])}
+                </div>
+
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">保存</button>
+                    <button class="btn" type="button" onclick="window.location.href='{:ADMIN_U('hotel')}'">返回</button>
+                </div>
+
+            </fieldset>
+       </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+    $(function(){
+        $('#Sys_province_id').change(function(){
+            val = $(this).val();
+            $.ajax({
+                url: '{:ADMIN_U("ajax/city")}',
+                type: 'POST',
+                dataType:"html",
+                jsonp: "callback",
+                data: "province_id="+val,
+                success: function(result){
+                    $('#city_sel_div').html(result);
+                    bindCityChange();
+                }
+            });
+        })
+
+        $('#price_group').on('click','.re_time_price',function(){
+            $(this).parent().remove();
+        });
+        insert_time_price_id = $("#price_group").find("#sp_price").length + 1;
+        $("#add_time_price").click(function () {
+            insert_time_price_id = insert_time_price_id + 1;
+
+            var insert_time_price_html = '<div class="controls" id="sp_price" style="padding-top:6px;padding-bottom: 6px;">';
+            insert_time_price_html += '时间日：';
+            insert_time_price_html += '<select name="sp_price[' + insert_time_price_id + '][start_weekday]" style="width:5em">';
+            insert_time_price_html += '<?php foreach($weekdays as $wd_k => $wd){ ?>';
+            insert_time_price_html += '<option value="<?php echo $wd_k;?>"><?php echo $wd;?></option>';
+            insert_time_price_html += '<?php } ?>';
+            insert_time_price_html += '</select>~';
+            insert_time_price_html += '<select name="sp_price[' + insert_time_price_id + '][end_weekday]" style="width:5em">';
+            insert_time_price_html += '<?php foreach($weekdays as $wd_k => $wd){ ?>';
+            insert_time_price_html += '<option value="<?php echo $wd_k;?>"><?php echo $wd;?></option>';
+            insert_time_price_html += '<?php } ?>';
+            insert_time_price_html += '</select>';
+            insert_time_price_html += ' 价格：';
+            insert_time_price_html += '<input name="sp_price[' + insert_time_price_id + '][new_price]" type="text" style="width:10em">';
+            insert_time_price_html += '<button class="btn btn-danger btn-xs re_time_price"  type="button"><i class="ace-icon glyphicon glyphicon-remove"></i></button>';
+            insert_time_price_html += '</div>';
+
+            $("#price_group").append(insert_time_price_html);
+        });
+    });
+    function bindCityChange(){
+        $('#Sys_city_id').change(function(){
+            val = $(this).val();
+            console.log("aaa"+val);
+            $.ajax({
+                url: '{:ADMIN_U("ajax/hotel")}',
+                type: 'POST',
+                dataType:"html",
+                jsonp: "callback",
+                data: "city_id="+val,
+                success: function(result){
+                    $('#hotel_sel_div').html(result);
+                }
+            });
+        })
+    }
+
+
+</script>
+
