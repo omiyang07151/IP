@@ -293,55 +293,68 @@ Datasource={
          */
 
         var tabale=this.inittable(".datatable",
-            this.apirl+"order/orderlist",
+            this.apirl+"order/indexdata",
             {
                 "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[stylist_name]", "value":$("#stylist_name").val()});
-                    aoData.push({ "name": "condition[order_no]", "value":$('#order_no').val()});
-                    aoData.push({ "name": "condition[order_flag]", "value":$('#order_flag').val()});
                     aoData.push({ "name": "condition[title]", "value":$('#title').val()});
-
                 },
                 "aoColumns":  [
 
                     { "mDataProp": "order_no" },
-                    { "mDataProp": "user_name" },
-                    { "mDataProp": "sl_name" },
-                    { "mDataProp": "stylist_name" },
-                    { "mDataProp": "title" },
-                    { "mDataProp": "price" },
-                    { "mDataProp": "createdate" },
-                    { "mDataProp": "order_time" },
-                    {
-                        "mDataProp": 'order_flag',
+                    { "mDataProp": null,
                         "fnRender": function (data, value, full ) {
-                            if(value=='1')
-                            {
-                                return "<span style='color: green'>待付款</span>";
+                            return data.aData.product.title;
+                        }
+                    },
+                    { "mDataProp": "room_num",
+                        "fnRender": function (data, value, full ) {
+                            return value+'间';
+                        }
+                    },
+                    { "mDataProp": "bed_type",
+                        "fnRender": function (data, value, full ) {
+                            if(value==1){
+                                return '大床';
                             }
-                            else if(value=='2')
-                            {
-                                return "<span style='color: #ff0000'>取消订单</span>";
+                            else{
+                                return "双床";
                             }
-                            else if(value=='3')
+                        }
+                    },
+                    { "mDataProp": "total_price" },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.checkin+'<br>'+data.aData.checkout;
+                        }
+                    },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.linkman+'<br>'+data.aData.linkmobile;
+                        }
+                    },
+                    { "mDataProp": "created" },
+                    {
+                        "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            if(data.aData.cancel_flag=='1')
                             {
-                                return "<span style='color: #921AFF'>已付款</span>";
+                                return "<span style='color: #ff0000'>用户取消</span>";
                             }
-                            else if(value=='4')
+                            else if(data.aData.status=='1')
                             {
-                                return "<span style='color: #9AFF02'>已使用</span>";
+                                return "<span style='color: #9AFF02'>已确认</span>";
                             }
-                            else if(value=='5')
+                            else if(data.aData.status=='2')
                             {
-                                return "<span style='color: #D94600'>申请退款</span>";
+                                return "<span style='color: #ff0000'>客服取消</span>";
                             }
-                            else if(value=='6')
+                            else if(data.aData.pay_status=='0')
                             {
-                                return "<span style='color: #E1E100'>已退款</span>";
+                                return "<span style='color: #921AFF'>待付款</span>";
                             }
-                            else if(value=='7')
+                            else if(data.aData.pay_status=='1')
                             {
-                                return "<span style='color: #ff0000'>超时未支付</span>";
+                                return "<span style='color: green'>已支付</span>";
                             }
                             //   return '<input type="text" class="userName" value="'+data+'"/>';
                         }
@@ -349,7 +362,7 @@ Datasource={
                     {
                         "mDataProp": null,
                         "fnRender": function (data, value, full ) {
-                            return "<button class='btn btn-mini btn-primary' onclick='window.location.href=\"/manager/order/details/orderid/"+data.aData.id +"\"'>查看详细</button>&nbsp;";
+                            return "<button class='btn btn-mini btn-primary' onclick='window.location.href=\"/admin/order/detail/id/"+data.aData.id +"\"'>查看详细</button>&nbsp;";
                         }
                     }
                 ]

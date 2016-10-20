@@ -10,8 +10,8 @@ class AdminBaseController extends BaseController{
     {
         parent::__construct();
 
-        $this->page = I('page');
-        $this->size = I('size');
+        $this->page = I('iDisplayStart');
+        $this->size = I('iDisplayLength');
         if(empty($this->page) || !is_numeric($this->page)){
             $this->page = C('ADMIN_DEFAULT_PAGE');
         }

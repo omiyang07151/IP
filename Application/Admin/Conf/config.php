@@ -14,7 +14,7 @@ return array(
         '__COMM_JS__'     => __ROOT__ . '/Assets/Common/js',
         '__COMM_VIDEO__'     => __ROOT__ . '/Assets/Common/video',
     ),
-    'ADMIN_DEFAULT_PAGE'=>1,
+    'ADMIN_DEFAULT_PAGE'=>0,
     'ADMIN_DEFAULT_SIZE'=>10,
     'UPLOAD_DEFAULT'=>'',
     'IMG_UPLOAD_URL' => '/admin/upload/image',

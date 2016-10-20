@@ -60,4 +60,25 @@ class OrderMstModel extends BaseModel {
         return $order;
     }
 
+    public function getAdminList($condition, $page=0, $size=10){
+        $where = "order_mst.del_flag=0";
+        $where = $this->getCondition($where, $condition);
+
+        $fields = "order_mst.*";
+        $order = 'product_mst_id desc, created';
+        $join = 'product_mst p on p.id = order_mst.product_mst_id AND p.title like \'%#title#%\'';
+        $join = $this->getCondition($join, $condition);
+
+        $data = $this->adminPageData($where, $fields, $order, $page, $size, $join);
+        if(!empty($data['aaData'])){
+            $productModel = D('ProductMst');
+            $userModel = D('UserMst');
+            foreach($data['aaData'] as &$d){
+                $d['product'] = $productModel->getProductById($d['product_mst_id'],'id,title');
+                $d['user'] = $userModel->getById($d['user_mst_id'],'id,nickname,headimgurl');
+            }
+        }
+        return $data;
+    }
+
 }

@@ -129,7 +129,7 @@ class BaseModel extends Model {
         return $result;
     }
 
-    public function getList($where, $value=null, $fields = null, $order = null, $page = 1, $size = 10) {
+    public function getList($where, $value=null, $fields = null, $order = null, $page = 1, $size = 10, $join=null) {
 
         //参数分析
         if (!$where) {
@@ -137,6 +137,17 @@ class BaseModel extends Model {
         }
         //获取数据表名
         $this->getTableName();
+
+        if(!empty($join)){
+            if(is_array($join)){
+                foreach($join as $j){
+                    $this->join($j);
+                }
+            }
+            else {
+                $this->join($join);
+            }
+        }
 
         //分析查询的字段信息
         $this->field($fields);
@@ -160,7 +171,65 @@ class BaseModel extends Model {
             $size = 10;
         }
 
+
+
+
         $offset = (($page-1)*$size).','.$size;
+        $this->limit($offset);
+
+        $result = $this->select();
+
+        $this->showSql();
+
+        return $result;
+    }
+
+    public function getListDataTable($where, $value=null, $fields = null, $order = null, $start = 0, $size = 10, $join=null) {
+
+        //参数分析
+        if (!$where) {
+            return false;
+        }
+        //获取数据表名
+        $this->getTableName();
+
+        if(!empty($join)){
+            if(is_array($join)){
+                foreach($join as $j){
+                    $this->join($j);
+                }
+            }
+            else {
+                $this->join($join);
+            }
+        }
+
+        //分析查询的字段信息
+        $this->field($fields);
+        //处理查询的SQL语句
+        $this->where($where, $value);
+        //处理排序的SQL语句
+        if (!is_null($order)) {
+            $this->order($order);
+        }
+        //处理limit语句
+        //if (!is_null($offset)) {
+        //    $this->options['limit'] = '';
+        //    $this->limit($offset);
+        //}
+
+        if($start<0 || !is_numeric($start)){
+            $page = 0;
+        }
+
+        if($size<1 || !is_numeric($size)){
+            $size = 10;
+        }
+
+
+
+
+        $offset = $start.','.$size;
         $this->limit($offset);
 
         $result = $this->select();
@@ -318,11 +387,11 @@ class BaseModel extends Model {
         return $result;
     }
 
-    public function adminPageData($where, $fields=null, $order=null, $page=1, $size=10){
+    public function adminPageData($where, $fields=null, $order=null, $page=0, $size=10, $join=null){
 
         $result['iTotalRecords'] = $size;
         $result['iTotalDisplayRecords']= $this->getCount($where);
-        $result['aaData'] = $this->getList($where, null, $fields, $order, $page, $size);
+        $result['aaData'] = $this->getListDataTable($where, null, $fields, $order, $page, $size, $join);
 
         if(empty($result['aaData'])){
             $result['aaData']=array();
