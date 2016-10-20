@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="__CSS__/font-awesome.min.css" />
     <link rel="stylesheet" href="__CSS__/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="__CSS__/chosen.css" />
-    <link rel="stylesheet" href="__CSS__/fileinput.min.css" />
     <link rel="stylesheet" href="__CSS__/datepicker.css" />
     <link rel="stylesheet" href="__CSS__/bootstrap-timepicker.css" />
     <link rel="stylesheet" href="__CSS__/daterangepicker.css" />
@@ -49,9 +48,7 @@
     <script src="__JS__/respond.min.js"></script>
     <![endif]-->
 
-    <!--ueditor plugins-->
-    <script type="text/javascript" charset="utf-8" src="__JS__/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="__JS__/ueditor/ueditor.all.min.js"> </script>
+
 </head>
 
 <body class="no-skin">
@@ -177,7 +174,7 @@
             </li>
 
             <li class="<?=$navname=="user/index"?"active":""?>">
-            <a href="{:ADMIN_U('manager/user')}">
+            <a href="{:ADMIN_U('product')}">
                 <i class="menu-icon fa fa-desktop"></i>
                 <span class="menu-text"> 产品管理 </span>
             </a>
@@ -359,7 +356,7 @@
                 <script src="__JS__/x-editable/ace-editable.min.js"></script>
                 <script src="__JS__/jquery.json.min.js"></script>
                 <script src="__JS__/chosen.jquery.min.js"></script>
-                <script src="__JS__/fileinput.js"></script>
+
 
 
                 <script src="__JS__/date-time/moment.min.js"></script>
@@ -383,6 +380,13 @@
                 <script type="text/javascript" src="__JS__/validator-0.7.0/local/zh_CN.js"></script>
                 <script type="text/javascript" src="__JS__/datasource.js?v=20131021"></script>
                 <link href="__JS__/jquery.validator.css" rel="stylesheet">
+
+                <!--ueditor plugins-->
+                <script type="text/javascript" charset="utf-8" src="__JS__/ueditor/ueditor.config.js"></script>
+                <script type="text/javascript" charset="utf-8" src="__JS__/ueditor/ueditor.all.min.js"> </script>
+
+                <!--ajaxfileupload plugins-->
+                <script type="text/javascript" src="__JS__/jquery.ajaxfileupload.js"></script>
 
                 {__CONTENT__}
                 

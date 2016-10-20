@@ -1,0 +1,1001 @@
+
+.ks-editor-hidden {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+}
+.ks-editor-post h1, .ks-editor-post h2, .ks-editor-post h3, .ks-editor-post h4, .ks-editor-post h5, .ks-editor-post h6, .ks-editor-post hr, .ks-editor-post p, .ks-editor-post blockquote, .ks-editor-post dl, .ks-editor-post dt, .ks-editor-post dd, .ks-editor-post ul, .ks-editor-post ol, .ks-editor-post li, .ks-editor-post pre, .ks-editor-post form, .ks-editor-post fieldset, .ks-editor-post legend, .ks-editor-post button, .ks-editor-post input, .ks-editor-post textarea, .ks-editor-post th, .ks-editor-post td {
+    margin: 0;
+    padding: 0;
+}
+.ks-editor-post address, .ks-editor-post caption, .ks-editor-post cite, .ks-editor-post code, .ks-editor-post dfn, .ks-editor-post em, .ks-editor-post strong, .ks-editor-post h1, .ks-editor-post h2, .ks-editor-post h3, .ks-editor-post h4, .ks-editor-post h5, .ks-editor-post h6, .ks-editor-post th, .ks-editor-post var {
+    font-style: inherit;
+    font-weight: inherit;
+}
+.ks-editor-post, .ks-editor-post button, .ks-editor-post input, .ks-editor-post select, .ks-editor-post textarea {
+    font: 14px/1.5 tahoma,arial,宋体,sans-serif;
+}
+.ks-editor-post h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+}
+.ks-editor-post h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.83em 0;
+}
+.ks-editor-post h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+.ks-editor-post h4 {
+    font-weight: bold;
+    margin: 1.33em 0;
+}
+.ks-editor-post h5 {
+    font-size: 0.83em;
+    font-weight: bold;
+    margin: 1.67em 0;
+}
+.ks-editor-post h6 {
+    font-size: 0.67em;
+    font-weight: bold;
+    margin: 2.33em 0;
+}
+.ks-editor-post blockquote {
+    display: block;
+    margin: 1em 40px;
+}
+.ks-editor-post address {
+    display: block;
+    font-style: italic;
+}
+.ks-editor-post i, .ks-editor-post cite, .ks-editor-post em, .ks-editor-post var, .ks-editor-post dfn {
+    font-style: italic;
+    font-weight: inherit;
+}
+.ks-editor-post strong {
+    font-style: inherit;
+    font-weight: bold;
+}
+.ks-editor-post u, .ks-editor-post ins {
+    text-decoration: underline;
+}
+.ks-editor-post s, .ks-editor-post strike, .ks-editor-post del {
+    text-decoration: line-through;
+}
+.ks-editor-post hr {
+    border: 1px inset;
+    color: #808080;
+    display: block;
+    height: 2px;
+    margin: 0.5em auto;
+}
+.ks-editor-post code, .ks-editor-post kbd, .ks-editor-post pre, .ks-editor-post samp {
+    font-family: courier new,courier,monospace;
+}
+.ks-editor-post small {
+    font-size: 12px;
+}
+.ks-editor-post sup {
+    vertical-align: text-top;
+}
+.ks-editor-post sub {
+    vertical-align: text-bottom;
+}
+.ks-editor-post legend {
+    color: #000000;
+}
+.ks-editor-post fieldset, .ks-editor-post img {
+    border: 0 none;
+}
+.ks-editor-post table.k-e-collapse-table {
+    border-collapse: collapse;
+    border-color: #000000;
+    display: table;
+}
+.ks-editor-post table {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+.ks-editor-post blockquote, .ks-editor-post ul, .ks-editor-post ol, .ks-editor-post dl {
+    margin: 1em;
+}
+.ks-editor-post ul, .ks-editor-post ol, .ks-editor-post dl {
+    margin-left: 2em;
+}
+.ks-editor-post ol li {
+    list-style: decimal outside none;
+}
+.ks-editor-post ul li {
+    list-style: disc outside none;
+}
+.ks-editor-post ul li {
+    list-style: disc outside none;
+}
+.ks-editor-post ul li ul li {
+    list-style: circle outside none;
+}
+.ks-editor-post ul li ul li ul li {
+    list-style: square outside none;
+}
+.ks-editor-post dl dd {
+    margin-left: 1em;
+}
+.ks-editor-post table.k-e-collapse-table > tbody > tr > th, .ks-editor-post table.k-e-collapse-table > tbody > tr > td {
+    border-color: #000000;
+}
+.ks-editor-post th {
+    font-weight: bold;
+    text-align: center;
+}
+.ks-editor-post caption {
+    margin-bottom: 0.5em;
+    white-space: nowrap;
+}
+.ks-editor-post ul, .ks-editor-post ol {
+    margin-left: 0;
+    padding-left: 40px;
+}
+.ks-editor-post img:-moz-broken {
+    -moz-force-broken-image-icon: 1;
+    height: 24px;
+    width: 24px;
+}
+.ks-editor-bubble {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+    border-color: #BBBBBB #BBBBBB #A8A8A8;
+    border-image: none;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: #666666;
+    cursor: default;
+    font-size: 13px;
+    padding: 12px 20px;
+    position: absolute;
+    z-index: 550;
+}
+.ks-editor-bubble-link, .ks-editor-bubble-url {
+    color: #1155CC;
+    cursor: pointer;
+    text-decoration: none;
+}
+.ks-editor-bubble-link:hover, .ks-editor-bubble-url:hover {
+    color: #1155CC;
+    text-decoration: underline;
+}
+.ks-editor-button {
+    background: url("cool.png") repeat-x scroll left 0 #E8EBEE;
+    border: 1px solid #C1C8D1;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px #E4E4E4;
+    color: #000000;
+    display: inline-block;
+    margin: 2px;
+    padding: 3px 18px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.ks-ie6 .ks-editor-button, .ks-ie7 .ks-editor-button {
+    display: inline;
+    padding-bottom: 2px;
+}
+.ks-editor-tools .ks-editor-button {
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 0;
+}
+.ks-editor-toolbar-button {
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+.ks-ie6 .ks-editor-toolbar-button {
+    border-color: #FF6347;
+}
+.ks-editor-tools .ks-editor-button-checked {
+    background-color: #DDE1EB !important;
+    border-color: #729BD1;
+}
+.ks-editor-button-hover, .ks-editor-button:hover {
+    background: url("cool.png") repeat-x scroll left -26px #F5E7CE;
+    border-color: #E8CCA0;
+    cursor: pointer;
+    text-decoration: none;
+}
+.ks-editor-tools .ks-editor-button-hover, .ks-editor-tools .ks-editor-button:hover {
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    border-color: #CED5E0;
+}
+.ks-editor-button-disabled {
+    opacity: 0.3;
+}
+.ks-ie7 .ks-editor-button-disabled, .ks-ie8 .ks-editor-button-disabled {
+}
+.ks-ie6 .ks-editor-button-disabled {
+}
+.ks-editor-tools .ks-editor-button-hover.ks-editor-button-checked {
+    border-color: #A1BADF;
+}
+.ks-editor-tools .ks-editor-button-active, .ks-editor-button:active {
+    background-color: #DDE1EB !important;
+    border-color: #A1BADF !important;
+}
+.ks-editor-code-wrap {
+    overflow: hidden;
+    padding: 20px 20px 10px;
+    position: relative;
+}
+.ks-editor-code-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.ks-editor-code-table td {
+    padding: 2px;
+}
+.ks-editor-code-table-action {
+    padding: 5px 20px 20px;
+}
+.ks-editor-code-insert {
+    margin-right: 20px;
+}
+.ks-editor-code-table .ks-editor-code-textarea {
+    height: 270px;
+    width: 367px;
+}
+.ks-editor-color-panel a {
+    color: #000000;
+    display: block;
+    text-decoration: none;
+}
+.ks-editor-color-panel a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+.ks-editor-color-panel a:active {
+    color: #000000;
+}
+.ks-editor-color-palette {
+    margin: 5px 8px 8px;
+}
+.ks-editor-color-palette table {
+    border: 1px solid #666666;
+    border-collapse: collapse;
+}
+.ks-editor-color-palette td {
+    border-right: 1px solid #666666;
+    height: 18px;
+    padding: 0;
+    width: 18px;
+}
+a.ks-editor-color-a {
+    height: 18px;
+    width: 18px;
+}
+a.ks-editor-color-a:hover {
+    border: 1px solid #FFFFFF;
+    height: 16px;
+    width: 16px;
+}
+a.ks-editor-color-remove {
+    margin: 2px 0 3px;
+    padding: 3px 8px;
+}
+a.ks-editor-color-remove:hover {
+    background-color: #D6E9F8;
+}
+.ks-editor-color-advanced-picker-left {
+    display: inline;
+    float: left;
+    margin-left: 10px;
+}
+.ks-editor-color-advanced-picker-right {
+    cursor: crosshair;
+    display: inline;
+    float: right;
+    margin: 13px 10px 0 0;
+    width: 50px;
+}
+.ks-editor-color-advanced-picker-right a {
+    display: block;
+    font-size: 0;
+    height: 2px;
+    line-height: 0;
+}
+.ks-editor-color-advanced-picker-left ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.ks-editor-color-advanced-picker-left li, .ks-editor-color-advanced-picker-left a {
+    display: block;
+    font-size: 0;
+    height: 16px;
+    line-height: 0;
+    overflow: hidden;
+    width: 15px;
+}
+.ks-editor-color-advanced-picker-left a:hover {
+    border: 1px solid #FFFFFF;
+    height: 13px;
+    width: 13px;
+}
+.ks-editor-color-advanced-indicator {
+    display: inline-block;
+    height: 24px;
+    line-height: 0;
+    margin-left: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 68px;
+}
+.ks-editor-draft {
+    bottom: 4px;
+    height: 22px;
+    position: absolute;
+    right: 15px;
+    text-align: right;
+    width: 650px;
+}
+.ks-editor-draft .ks-editor-menu-button {
+    background: none repeat scroll 0 center #FFFFFF;
+    margin-right: 2px;
+    padding: 0;
+    text-align: left;
+}
+.ks-editor-draft .ks-editor-menu-button-content {
+    height: 20px;
+    line-height: 20px;
+    padding-left: 4px;
+    position: relative;
+}
+.ks-editor-draft-save-btn span {
+    vertical-align: middle;
+}
+.ks-editor-draft-save {
+    background: url("cool.png") no-repeat scroll left -52px rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 15px;
+    margin: 1px 0 2px;
+    width: 18px;
+}
+.ks-editor-draft-title, .ks-editor-draft-time {
+    vertical-align: middle;
+}
+.ks-editor-draft-time {
+    margin: 0 10px;
+}
+.ks-editor-draft-help {
+    background: url("cool.png") no-repeat scroll left -69px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: inline-block;
+    height: 14px;
+    outline: 0 none;
+    overflow: hidden;
+    text-indent: 9999px;
+    vertical-align: middle;
+    width: 14px;
+}
+.ks-editor {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CED5E0;
+    font-size: 13px;
+    line-height: 1.2;
+}
+.ks-editor-textarea-wrap {
+    overflow: hidden;
+}
+.ks-editor-textarea {
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.ks-editor-iframe {
+    border: 0 none;
+    height: 100%;
+    width: 100%;
+}
+.ks-editor-tools {
+    background: -moz-linear-gradient(center top , #F8FAFD, #F2F5F8) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #CED5E0;
+}
+.ks-editor-status {
+    background: -moz-linear-gradient(center top , #E7E9ED, #F1F4F7) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-top: 1px solid #CED5E0;
+    height: 22px;
+    padding: 2px 0;
+    position: relative;
+}
+ks-editor-toolbar-padding {
+    padding: 5px;
+}
+.ks-editor-toolbar-item {
+    background: none no-repeat scroll left top rgba(0, 0, 0, 0);
+    display: block;
+    height: 16px;
+    margin: 2px 4px;
+    overflow: hidden;
+    text-indent: -999999px;
+    vertical-align: middle;
+    width: 16px;
+}
+.ks-editor-toolbar-separator {
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #FFFFFF;
+    display: inline-block;
+    font-size: 120%;
+    margin: 0 2px;
+    overflow: hidden;
+    padding: 0;
+    vertical-align: middle;
+    width: 0;
+}
+.ks-editor-toolbar-sourceArea {
+    background-image: url("cool.png");
+    background-position: left -81px;
+}
+.ks-editor-toolbar-preview {
+    background-image: url("cool.png");
+    background-position: left -97px;
+}
+.ks-editor-toolbar-bold {
+    background-image: url("cool.png");
+    background-position: left -113px;
+}
+.ks-editor-toolbar-italic {
+    background-image: url("cool.png");
+    background-position: left -129px;
+}
+.ks-editor-toolbar-underline {
+    background-image: url("cool.png");
+    background-position: left -145px;
+    height: 11px;
+    margin: 5px 7px 4px;
+    width: 10px;
+}
+.ks-editor-toolbar-strikeThrough {
+    background-image: url("cool.png");
+    background-position: left -156px;
+    height: 11px;
+    margin-bottom: 5px;
+    margin-top: 4px;
+}
+.ks-editor-toolbar-orderedList {
+    background-image: url("cool.png");
+    background-position: left -167px;
+    margin-right: 0;
+}
+.ks-editor-toolbar-unorderedList {
+    background-image: url("cool.png");
+    background-position: left -183px;
+    margin-right: 0;
+}
+.ks-editor-tools .ks-editor-toolbar-unorderedListArrowBtn, .ks-editor-tools .ks-editor-toolbar-orderedListArrowBtn {
+    border-color: rgba(0, 0, 0, 0);
+}
+.ks-editor-tools .ks-editor-toolbar-unorderedListBtn, .ks-editor-tools .ks-editor-toolbar-orderedListBtn {
+    margin-right: 0;
+}
+.ks-editor-tools .ks-editor-toolbar-unorderedListArrowBtn .ks-editor-menu-button-content, .ks-editor-tools .ks-editor-toolbar-orderedListArrowBtn .ks-editor-menu-button-content {
+    font-size: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 0;
+}
+.ks-editor-tools .ks-editor-toolbar-unorderedListArrowBtn .ks-editor-menu-button-dropdown, .ks-editor-tools .ks-editor-toolbar-orderedListArrowBtn .ks-editor-menu-button-dropdown {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    border-color: #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-image: none;
+    border-right: 3px solid rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 3px;
+    height: 0;
+    margin: 8px 2px;
+    position: static;
+    width: 0;
+}
+.ks-editor-toolbar-outdent {
+    background-image: url("cool.png");
+    background-position: left -199px;
+}
+.ks-editor-toolbar-indent {
+    background-image: url("cool.png");
+    background-position: left -215px;
+}
+.ks-editor-toolbar-justifyLeft {
+    background-image: url("cool.png");
+    background-position: left -231px;
+}
+.ks-editor-toolbar-justifyCenter {
+    background-image: url("cool.png");
+    background-position: left -247px;
+}
+.ks-editor-toolbar-justifyRight {
+    background-image: url("cool.png");
+    background-position: left -263px;
+}
+.ks-editor-toolbar-image {
+    background-image: url("cool.png");
+    background-position: left -279px;
+}
+.ks-editor-toolbar-backColorBtn, .ks-editor-toolbar-foreColorBtn {
+    margin-right: 0;
+}
+.ks-editor-toolbar-backColor, .ks-editor-toolbar-foreColor {
+    background-image: url("cool.png");
+    background-position: left -295px;
+    height: 15px;
+    margin: 2px 0 1px 4px;
+    width: 18px;
+}
+.ks-editor-toolbar-backColor {
+    margin-left: 3px;
+}
+.ks-editor-toolbar-foreColor {
+    background-image: url("cool.png");
+    background-position: left -310px;
+}
+.ks-editor-toolbar-color-indicator {
+    font-size: 0;
+    height: 4px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    overflow: hidden;
+    width: 20px;
+}
+.ks-editor-toolbar-backColorArrowBtn, .ks-editor-toolbar-foreColorArrowBtn {
+    margin-left: 0;
+}
+.ks-editor-toolbar-backColorArrow, .ks-editor-toolbar-foreColorArrow {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-image: none;
+    border-right: 3px solid rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 3px;
+    height: 0;
+    margin: 8px 2px;
+    width: 0;
+}
+.ks-editor-toolbar-undo {
+    background-image: url("cool.png");
+    background-position: left -324px;
+}
+.ks-editor-toolbar-redo {
+    background-image: url("cool.png");
+    background-position: left -339px;
+    height: 15px;
+    margin: 3px 4px;
+}
+.ks-editor-toolbar-table {
+    background-image: url("cool.png");
+    background-position: left -354px;
+}
+.ks-editor-toolbar-template {
+    background-image: url("cool.png");
+    background-position: left -370px;
+}
+.ks-editor-toolbar-maximize {
+    background-image: url("cool.png");
+    background-position: left -386px;
+}
+.ks-editor-toolbar-flash {
+    background-image: url("cool.png");
+    background-position: left -402px;
+}
+.ks-editor-toolbar-link {
+    background-image: url("cool.png");
+    background-position: left -418px;
+}
+.ks-editor-toolbar-music {
+    background-image: url("cool.png");
+    background-position: left -434px;
+}
+.ks-editor-toolbar-xiamiMusic {
+    background-image: url("cool.png");
+    background-position: left -434px;
+}
+.ks-editor-toolbar-video {
+    background-image: url("cool.png");
+    background-position: left -450px;
+}
+.ks-editor-toolbar-smiley {
+    background-image: url("cool.png");
+    background-position: left -466px;
+}
+.ks-editor-toolbar-removeFormat {
+    background-image: url("cool.png");
+    background-position: left -482px;
+}
+.ks-editor-toolbar-pageBreak {
+    background-image: url("cool.png");
+    background-position: left -498px;
+    height: 12px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+.ks-editor-toolbar-code {
+    background-image: url("cool.png");
+    background-position: left -509px;
+}
+.ks-editor-toolbar-restore {
+    background-image: url("cool.png");
+    background-position: left -525px;
+}
+.ks-editor-input {
+    background: url("text-bg.png") repeat-x scroll 0 0 #FFFFFF;
+    border: 1px solid #B5B8C8;
+    border-radius: 2px;
+    height: 24px;
+    line-height: 22px;
+}
+.ks-editor-input-tip {
+    color: #969696;
+}
+.ks-editor-element-path {
+    padding: 0 5px;
+    text-decoration: none;
+}
+.ks-editor-element-path:hover {
+    background: none repeat scroll 0 0 #CCFFFF;
+    text-decoration: none;
+}
+.ks-editor-popupmenu {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border-color: #CED5E0;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px #E4E4E4;
+    cursor: default;
+    font: 13px Arial,sans-serif;
+    left: -9999px;
+    margin: 0;
+    outline: medium none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: -9999px;
+}
+.ks-editor-popupmenu-hidden {
+    visibility: hidden;
+}
+.ks-editor-menuitem {
+    border-width: 0;
+    margin: 0;
+    padding: 4px 10px 4px 20px;
+    position: relative;
+    white-space: nowrap;
+}
+.ks-editor-menuitem-hover, .ks-editor-option-selected {
+    background: none repeat scroll 0 0 #D6E9F8;
+    color: #000000;
+    text-decoration: none;
+}
+.ks-editor-menuitem-disabled {
+    opacity: 0.3;
+}
+.ks-editor-dialog, .ks-editor-overlay {
+    left: -9999px;
+    outline: 0 none;
+    overflow: hidden;
+    position: absolute;
+    top: -9999px;
+}
+.ks-editor-overlay-hidden {
+    left: -9999px !important;
+    top: -9999px !important;
+    visibility: hidden;
+}
+.ks-editor-overlay-mask-hidden {
+    visibility: hidden;
+}
+.ks-editor-dialog label, .ks-editor-dialog input {
+    vertical-align: middle;
+}
+.ks-editor-dialog, .ks-editor-popup {
+    background-color: #FBFBFB;
+    border: 1px solid #ACB4BE;
+}
+.ks-editor-dialog-header {
+    background: url("cool.png") repeat-x scroll left -541px #D6DBE2;
+    border-bottom: 1px solid #ACB4BE;
+    font-size: 14px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 18px;
+}
+.ks-editor-dialog-close {
+    border: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 18px;
+    outline: 0 none;
+    overflow: hidden;
+    position: absolute;
+    right: 6px;
+    text-decoration: none;
+    top: 6px;
+    vertical-align: middle;
+    width: 18px;
+}
+.ks-editor-dialog-close-x {
+    background: url("cool.png") no-repeat scroll left -571px rgba(0, 0, 0, 0);
+    display: block;
+    height: 13px;
+    margin: 2.5px;
+    text-indent: -9999px;
+    width: 13px;
+}
+.ks-editor-dialog-close:hover {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CED5E0;
+}
+.ks-editor-overlay-mask {
+    background-color: #000000;
+    opacity: 0.3;
+}
+.ks-editor-overlay-loading {
+    background: url("../tao-loading.gif") no-repeat scroll center center #EEEEEE;
+    opacity: 0.6;
+}
+.ks-editor-global-loading .ks-editor-overlay-loading {
+    background-attachment: fixed;
+}
+.ks-editor-progressbar {
+    background: -moz-linear-gradient(center top , #EAEFF4, #EBF0F3) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #D6DEE6;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.ks-editor-progressbar-inner {
+    background-color: #6FA5DB;
+    border: 1px solid #3571B4;
+    padding: 1px;
+}
+.ks-editor-progressbar-inner-bg {
+    background: -moz-linear-gradient(center top , #73B1E9, #3F81C8) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 100%;
+}
+.ks-editor-progressbar-title {
+    left: 40%;
+    line-height: 1.2;
+    position: absolute;
+    top: 0;
+    width: 30px;
+}
+.ks-editor-resizer {
+    background: url("cool.png") no-repeat scroll left -584px rgba(0, 0, 0, 0);
+    bottom: 0;
+    cursor: auto;
+    font-size: 0;
+    height: 10px;
+    position: absolute;
+    right: 0;
+    width: 10px;
+}
+.ks-editor-menu-button, .ks-editor-big-select {
+    border: 1px solid #C1C8D1;
+    border-radius: 2px;
+    color: #000000;
+    display: inline-block;
+    height: 20px;
+    margin: 2px 0;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.ks-editor-tools .ks-editor-menu-button {
+    margin: 0 2px;
+}
+.ks-editor-tools .ks-editor-menu-button-hover {
+    border-color: #729BD1;
+    color: #000000;
+    text-decoration: none;
+}
+.ks-editor-tools .ks-editor-menu-button-active {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+.ks-editor-menu-button-dropdown, .ks-editor-big-menu-button-dropdown, .ks-editor-big-menu-button-dropdown-inner {
+    background: url("cool.png") no-repeat scroll left -594px rgba(0, 0, 0, 0);
+    font-size: 0;
+    height: 3px;
+    margin-right: 5px;
+    margin-top: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    vertical-align: middle;
+    width: 7px;
+}
+.ks-editor-big-menu-button-dropdown {
+    margin-right: 0;
+    margin-top: 0;
+}
+.ks-editor-menu-button-disabled, .ks-editor-menu-button-disabled .ks-editor-menu-button-hover, .ks-editor-menu-button-disabled .ks-editor-menu-button {
+    border-color: #C1C8D1;
+    color: #808080;
+    cursor: default;
+}
+.ks-ie9 .ks-editor-menu-button-disabled .ks-editor-menu-button {
+    filter: none;
+}
+.ks-editor-tools .ks-editor-menu-button-content {
+    height: 20px;
+    line-height: 20px;
+    padding-left: 4px;
+    position: relative;
+}
+.ks-editor-big-select {
+    height: 24px;
+}
+.ks-editor-big-menu-button-dropdown {
+    background: url("cool.png") repeat-x scroll left 0 #E8EBEE;
+    border-left: 1px solid #C1C8D1;
+    height: 24px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    width: 14px;
+}
+.ks-editor-big-select {
+    background: url("text-bg.png") repeat-x scroll 0 0 #FFFFFF;
+}
+.ks-editor-big-menu-button-content {
+    padding-left: 5px;
+}
+.ks-editor-smiley-sprite {
+    background: url("http://a.tbcdn.cn/sys/wangwang/smiley/sprite.png") no-repeat scroll -1px 0 rgba(0, 0, 0, 0);
+    height: 235px;
+    margin: 5px;
+    overflow: hidden;
+    width: 288px;
+}
+.ks-editor-smiley-sprite a {
+    border: 1px solid #FFFFFF;
+    float: left;
+    height: 24px;
+    width: 24px;
+}
+.ks-editor-smiley-sprite a:hover {
+    border: 1px solid #808080;
+}
+.ks-editor-img-tabs-bar {
+    border-bottom: 1px solid #CED5E0;
+    list-style: none outside none;
+    margin: 10px 0 0;
+    outline: 0 none;
+    padding-left: 10px;
+}
+.ks-editor-img-tabs-tab {
+    background-color: #F2F2F2;
+    border-color: #CED5E0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    cursor: pointer;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    outline: 0 none;
+    position: relative;
+    text-align: center;
+    width: 120px;
+}
+.ks-editor-img-tabs-bar .ks-editor-img-tabs-tab-selected {
+    background-color: #FCFCFC;
+    border-color: #CED5E0 #CED5E0 #FCFCFC;
+    cursor: default;
+    margin-bottom: -1px;
+    padding-bottom: 1px;
+}
+.ks-editor-img-tabs-body {
+    padding: 12px 0 5px 20px;
+}
+.ks-editor-img-tabs-panel {
+    display: none;
+    position: relative;
+}
+.ks-editor-img-tabs-panel-selected {
+    display: block;
+}
+.ks-editor-table-config td {
+    padding: 2px;
+}
+.ks-editor-upload-btn-wrap {
+    padding: 15px 20px 15px 10px;
+    position: relative;
+}
+.ks-editor-upload-list {
+    width: 100%;
+}
+.ks-editor-upload-list th {
+    background: -moz-linear-gradient(center top , #E7E9ED, #F1F4F7) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-top: 1px solid #C1C8D1;
+}
+.ks-editor-upload-list td, .ks-editor-upload-list th {
+    border-bottom: 1px solid #C1C8D1;
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+    text-align: center;
+}
+.ks-editor-upload-complete .ks-editor-upload-filename {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.ks-editor-img-setting {
+    position: relative;
+}
+.ks-editor-xiami-list {
+    border-top: 1px solid #CED5E0;
+    display: none;
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 10px 20px 0;
+}
+.ks-editor-xiami-list ul {
+    margin: 0;
+    padding: 0;
+}
+.ks-editor-xiami-list li {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CED5E0;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #646464;
+    height: 24px;
+    line-height: 24px;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0 20px 0 10px;
+}
+.ks-editor-xiami-list .ks-editor-xiami-add {
+    float: right;
+}
+.ks-editor-xiami-list .ks-editor-xiami-song {
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300px;
+}
+.ks-editor-xiami-paging a {
+    display: inline-block;
+    margin: 0 3px;
+    padding: 1px 7px;
+}
+.ks-editor-xiami-paging a:hover, .ks-editor-xiami-paging a.ks-editor-xiami-curpage {
+    color: #FF0000;
+    text-decoration: none;
+}
+.ks-editor-xiami-paging {
+    margin: 20px -10px 0;
+    text-align: center;
+}
+.ks-editor-xiami-page-more {
+    padding: 0 10px;
+}

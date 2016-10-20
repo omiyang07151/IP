@@ -276,88 +276,6 @@ Datasource={
 
         return oTable;
     },
-    Itemtable:function()
-    {
-
-        /*
-         第一个参数。要渲染的table的class或者id
-         第二个参数。读取数据的url
-         第三个参数、table组件的参数配置
-         */
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"item/itemlist",
-          {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[stylist_name]", "value":$("#stylist_name").val()});
-                    aoData.push({ "name": "condition[sl_name]", "value":$("#sl_name").val()});
-                    aoData.push({ "name": "condition[item_catlog]", "value":$("#item_catlog").val()});
-                },
-              "aoColumns":  [
-                  {
-                      "mDataProp":null,
-                      "fnRender": function (data, value, full ) {
-                          return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                      }
-                  },
-                  { "mDataProp": "id" },
-                  {
-                      "mDataProp":"image",
-                      "fnRender": function (data, value, full ) {
-                          return '<img src="'+value+'" width="50">';
-                      }
-                  },
-                  { "mDataProp": "item_name" },
-                  {
-                      "mDataProp": "item_catlog",
-                      "fnRender":function(data,value,full){
-
-                      if(value=='1')
-                      {
-                          return "<span style='color: blue'>男士</span>";
-                      }
-                      else if(value=="2")
-                      {
-                          return "<span style='color: #ff0000'>女士</span>";
-                      }
-                  } },
-                  { "mDataProp": "sl_name" },
-                  { "mDataProp": "stylist_name" },
-                  { "mDataProp": "cost" },
-                  { "mDataProp": "create_date" },
-                  {
-                      "mDataProp": 'status',
-                      "fnRender": function (data, value, full ) {
-                          if(value=='0')
-                          {
-                              return "<span style='color: green'>正常</span>";
-                          }
-                          else
-                          {
-                              return "<span style='color: #ff0000'>冻结</span>";
-                          }
-                       //   return '<input type="text" class="userName" value="'+data+'"/>';
-                      }
-                  },
-                  {
-                      "mDataProp": null,
-                      "fnRender": function (data, value, full ) {
-                          var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                              '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/item/itemadd/itemid/'+data.aData.id+'\'">'+
-                              '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                              '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                              ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                              ' </div>';
-                          return btmhtml;
-                      }
-                  }
-              ]
-            })
-
-        return tabale;
-    },
 
     /*
      第一个参数。要渲染的table的class或者id
@@ -438,355 +356,17 @@ Datasource={
             })
         return tabale;
     },
-    Refundtable:function()
-    {
 
-        /*
-         第一个参数。要渲染的table的class或者id
-         第二个参数。读取数据的url
-         第三个参数、table组件的参数配置
-         */
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"refund/refundlist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[usname]", "value":$("#usname").val()});
-                    aoData.push({ "name": "condition[uscode]", "value":$("#uscode").val()});
-                    aoData.push({ "name": "condition[order_no]", "value":$('#order_no').val()});
-                    aoData.push({ "name": "condition[refund_no]", "value":$('#refund_no').val()});
-                    aoData.push({ "name": "condition[refund_flag]", "value":$('#refund_flag').val()});
-                },
-                "aoColumns":  [
-
-                    { "mDataProp": "refund_no" },
-                    { "mDataProp": "usname" },
-                    { "mDataProp": "order_no" },
-                    { "mDataProp": "price" },
-                    { "mDataProp": "num" },
-                    { "mDataProp": "total_fee" },
-                    { "mDataProp": "apply_date" },
-                    { "mDataProp": "refund_date" },
-
-                    {
-                        "mDataProp": 'refund_flag',
-                        "fnRender": function (data, value, full ) {
-                            if(value=='0')
-                            {
-                                return "<span style='color: green'>待审核</span>";
-                            }
-                            else if(value=='1')
-                            {
-                                return "<span style='color: #ff0000'>已审核</span>";
-                            }
-                            else if(value=='2')
-                            {
-                                return "<span style='color: #921AFF'>已退款</span>";
-                            }
-                            else if(value=='99')
-                            {
-                                return "<span style='color: #9AFF02'>审核失败</span>";
-                            }
-
-                            //   return '<input type="text" class="userName" value="'+data+'"/>';
-                        }
-                    },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            return "<button class='btn btn-mini btn-primary' onclick='window.location.href=\"/manager/refund/detail/refundid/"+data.aData.id +"\"'>查看详细</button>&nbsp;";
-
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    TopSalontable:function()
-    {
-
-        /*
-         第一个参数。要渲染的table的class或者id
-         第二个参数。读取数据的url
-         第三个参数、table组件的参数配置
-         */
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"top/salonList",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[title]", "value":$("#title").val()});
-                    aoData.push({ "name": "condition[startdate]", "value":$("#startdate").val()});
-                    aoData.push({ "name": "condition[enddate]", "value":$('#enddate').val()});
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                        }
-                    },
-                    { "mDataProp": "city_name" },
-                    { "mDataProp": "title" },
-                    { "mDataProp": "logo", "fnRender": function (data, value, full ) {
-                        return "<img src='"+value+"' style='width:30px;height:30px;'>";
-                    }},
-                    { "mDataProp": "sort" },
-                    { "mDataProp": "startdate"},
-                    { "mDataProp": "enddate" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/top/salonadd/id/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    Jobtable:function(){
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"job/joblist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[brandName]", "value":$("#brandName").val()});
-
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-                        }
-                    },
-
-                    { "mDataProp": "shop_name" },
-                    { "mDataProp": "job_name" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/job/jobadd/jobid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    Shoptable:function()
-    {
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"shop/shoplist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[shopName]", "value":$("#shopName").val()});
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                        }
-                    },
-                    { "mDataProp": "id" },
-                    { "mDataProp": "shopName" },
-                    { "mDataProp": "shopAddress" },
-                    { "mDataProp": "shopPhone" },
-                    { "mDataProp": "shopGoway" },
-                    { "mDataProp": "shophotcount" },
-                    //  <td>  "<img   src= "/assets/img/userImg/".$value." >" style='width:40px'' >";</td>
-
-                    {
-                        "mDataProp": 'show_flg',
-                        "fnRender": function (data, value, full ) {
-                            if(value=='0')
-                            {
-                                return "<span style='color: #ff0000'>不显示</span>";
-                            }
-                            else
-                            {
-                                return "<span style='color: green'>显示</span>";
-                            }
-                            //   return '<input type="text" class="userName" value="'+data+'"/>';
-                        }
-                    },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/shop/shopadd/shopid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-
-
-    /**
-     * 发型师
-     * @returns {*}
-     * @constructor
-     */
-
-    Stylisttable:function()
-    {
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"stylist/stylistlist",
-            {               "fnServerParams": function ( aoData ) {
-                   aoData.push({ "name": "condition[haisName]", "value":$("#haisName").val()});
-                aoData.push({ "name": "condition[haisJob]", "value":$("#haisJob").val()});
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-                        }
-                    },
-
-                    { "mDataProp": "haisName" },
-                    { "mDataProp": "haisJob" },
-                    { "mDataProp": "haisWorkhous" },
-                    { "mDataProp": "haisZYBJ" },
-
-                    { "mDataProp": "createdate" },
-                    {
-                        "mDataProp": 'status',
-                        "fnRender": function (data, value, full ) {
-                            if(value=='0')
-                            {
-                                return "<span style='color: green'>正常</span>";
-                            }
-                            else
-                            {
-                                return "<span style='color: #ff0000'>冻结</span>";
-                            }
-
-                        }
-                    },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/stylist/stylistadd/stylistid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-
-
-    /**
-     *  品牌信息
-     * @returns {*}
-     * @constructor
-     */
-
-    Brandtable:function()
-    {
-
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"brand/brandlist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[brandName]", "value":$("#brandName").val()});
-
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-                        }
-                    },
-
-                    { "mDataProp": "brandName" },
-                    { "mDataProp": "brandDes" },
-                    { "mDataProp": "brandLogoUrl" ,
-                        "fnRender": function (data, value, full ) {
-                            return "<img src='"+value+"' width='120' height='60'/>";
-
-                        }
-                    },
-                    { "mDataProp": "createdate" },
-                    {
-                        "mDataProp": 'status',
-                        "fnRender": function (data, value, full ) {
-                            if(value=='0')
-                            {
-                                return "<span style='color: green'>正常</span>";
-                            }
-                            else
-                            {
-                                return "<span style='color: #ff0000'>冻结</span>";
-                            }
-
-                        }
-                    },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/brand/brandadd/brandid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
 
     Producttable:function()
     {
 
 
         var tabale=this.inittable(".datatable",
-            this.apirl+"product/productlist",
+            this.apirl+"product/indexdata",
             {
                 "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[proName]", "value":$("#proName").val()});
-                    aoData.push({ "name": "condition[brandid]", "value":$("#brandid").val()});
+                    aoData.push({ "name": "condition[title]", "value":$("#title").val()});
                 },
                 "aoColumns":  [
                     {
@@ -796,27 +376,52 @@ Datasource={
                         }
                     },
 
-                    { "mDataProp": "proName" },
-                    { "mDataProp": "proPicUrl",
+                    {
+                        "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.province_name+'/'+data.aData.city_name;
+                        }
+                    },
+                    { "mDataProp": "title" },
+                    { "mDataProp": "hotel_name" },
+                    { "mDataProp": "coverimg",
                         "fnRender": function (data, value, full ) {
                             return "<img src='"+value+"' width='120' height='80'/>";
 
                         }
                     },
-                    { "mDataProp": "proStandard" },
-                    { "mDataProp": "proFunction" },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.market_price+"/"+data.aData.p_price;
+
+                        }
+                    },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.limit_num+"/"+data.aData.max_num+"/"+data.aData.saled_num;
+                        }
+                    },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.startd+"~<br>"+data.aData.endd;
+                        }
+                    },
+                    { "mDataProp": null,
+                        "fnRender": function (data, value, full ) {
+                            return data.aData.checkin_start+"~<br>"+data.aData.checkin_end;
+                        }
+                    },
                     {
                         "mDataProp": 'status',
                         "fnRender": function (data, value, full ) {
                             if(value=='0')
                             {
-                                return "<span style='color: green'>正常</span>";
+                                return "<span style='color: #ff0000'>未上架</span>";
                             }
                             else
                             {
-                                return "<span style='color: #ff0000'>冻结</span>";
+                                return "<span style='color: green'>已上架</span>";
                             }
-
                         }
                     },
                     {
@@ -824,7 +429,7 @@ Datasource={
                         "fnRender": function (data, value, full ) {
                             var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
 
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/product/productadd/productid/'+data.aData.id+'\'">'+
+                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/admin/product/edit/id/'+data.aData.id+'.html\'">'+
                                 '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
                                 '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
                                 ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
@@ -929,256 +534,6 @@ Datasource={
             })
         return tabale;
     },
-    Bannertable:function()
-    {
 
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"banner/bannerlist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[title]", "value":$("#title").val()});
-                    aoData.push({ "name": "condition[startdate]", "value":$("#startdate").val()});
-                    aoData.push({ "name": "condition[enddate]", "value":$("#enddate").val()});
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-                        }
-                    },
-
-                    { "mDataProp": "bannerimgurl"  ,
-                        "fnRender": function (data, value, full ) {
-                            return "<img src='"+value+"' width='120' height='60'/>";
-
-                        }},
-                    { "mDataProp": "bannertitle" },
-                    { "mDataProp": "urlType" ,
-                        "fnRender": function (data, value, full ) {
-                            switch(value){
-                                case "1": return "外部链接";break;
-                                case "2": return "造型";break;
-                                case "3": return "沙龙";break;
-                                case "4": return "活动";break;
-                                case "5": return "随便逛逛";break;
-                            }
-                        }
-                    },
-                    { "mDataProp": "bannerurl" },
-                    { "mDataProp": "startdate" },
-                    { "mDataProp": "enddate" },
-                    { "mDataProp": "createdate" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/banner/edit/bannerid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    Seckilltable:function()
-    {
-
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"seckill/seckilllist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[is_salled]", "value":$("#is_salled option:selected").val()});
-                    aoData.push({ "name": "condition[seckill_start]", "value":$("#seckill_start").val()});
-                    aoData.push({ "name": "condition[seckill_end]", "value":$("#seckill_end").val()});
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                        }
-                    },
-
-                    { "mDataProp": "seckill_img"  ,
-                        "fnRender": function (data, value, full ) {
-                            return "<img src='"+value+"' width='120' height='60'/>";
-
-                        }},
-                    { "mDataProp": "sl_name" },
-
-                    { "mDataProp": "top_flag" ,
-                        "fnRender": function (data, value, full ) {
-                            switch(value){
-                                case "0": return "普通显示";break;
-                                case "1": return "首页置顶";break;
-                            }
-                        }
-                    },
-
-                    { "mDataProp": "seckill_start" },
-                    { "mDataProp": "seckill_end" },
-                    { "mDataProp": "createdate" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/seckill/edit/seckillid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-
-
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    Eventtable:function()
-    {
-
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"events/eventslist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[startdate]", "value":$("#startdate").val()});
-                    aoData.push({ "name": "condition[enddate]", "value":$("#enddate").val()});
-                    aoData.push({ "name": "condition[title]", "value":$("#title").val()});
-
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-                        }
-                    },
-
-                    { "mDataProp": "city_name" },
-                    { "mDataProp": "title" },
-                    { "mDataProp": "prize" },
-                    { "mDataProp": "prize_total_amount" },
-                    { "mDataProp": "startdate" },
-                    { "mDataProp": "enddate" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/events/edit/eventid/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    ServiceTable:function()
-    {
-
-        /*
-         第一个参数。要渲染的table的class或者id
-         第二个参数。读取数据的url
-         第三个参数、table组件的参数配置
-         */
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"service/indexData",
-            {
-//                "fnServerParams": function ( aoData ) {
-//                    aoData.push({ "name": "condition[title]", "value":$("#title").val()});
-//                    aoData.push({ "name": "condition[startdate]", "value":$("#startdate").val()});
-//                    aoData.push({ "name": "condition[enddate]", "value":$('#enddate').val()});
-//                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                        }
-                    },
-                    { "mDataProp": "name" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/service/add/id/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                          }
-                    }
-                ]
-            })
-        return tabale;
-    },
-    BusinesszoneTable:function()
-    {
-
-
-        /*
-         第一个参数。要渲染的table的class或者id
-         第二个参数。读取数据的url
-         第三个参数、table组件的参数配置
-         */
-
-        var tabale=this.inittable(".datatable",
-            this.apirl+"businesszone/zonelist",
-            {
-                "fnServerParams": function ( aoData ) {
-                    aoData.push({ "name": "condition[city_id]", "value":$("#city_id_city").val()});
-
-                },
-                "aoColumns":  [
-                    {
-                        "mDataProp":null,
-                        "fnRender": function (data, value, full ) {
-                            return '<label><input type="checkbox" class="ace" name="deleteid"   value="'+data.aData.id+'" ><span class="lbl"></span></label>';
-
-                        }
-                    },
-                    { "mDataProp": "city_name" },
-                    { "mDataProp": "zone_name" },
-                    { "mDataProp": "sort" },
-                    { "mDataProp": "createdate" },
-                    {
-                        "mDataProp": null,
-                        "fnRender": function (data, value, full ) {
-                            var btmhtml='<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">'+
-
-                                '<button class="btn btn-xs btn-info" onclick="window.location.href=\'/manager/businesszone/edit/id/'+data.aData.id+'\'">'+
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i></button>'+
-                                '<button class="btn btn-xs btn-danger"  onclick="removeitem(\''+data.aData.id+'\');">'+
-                                ' <i class="ace-icon fa fa-trash-o bigger-120"></i> </button>'+
-                                ' </div>';
-                            return btmhtml;
-                        }
-                    }
-                ]
-            })
-        return tabale;
-    }
 }
 

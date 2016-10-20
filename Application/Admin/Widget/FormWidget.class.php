@@ -1,5 +1,5 @@
 <?php
-namespace Inoherb\Widget;
+namespace Admin\Widget;
 
 use Think\Controller;
 
@@ -348,22 +348,6 @@ class FormWidget extends Controller {
         $this->assign('urlName', $this->createName($urlName));
         $this->assign('sortName', $this->createName($sortName));
         $this->assign('value', $value);
-//        $this->assign('prefix', $prefix);
-
-//        $id = $this->createId($name);
-//        $this->assign('id', $id);
-
-//        $default_attr = array();
-//        $attr = $this->mergeAttr($default_attr, $attr);
-//
-//        if(!empty($attr['category'])){
-//            $this->assign('category', $attr['category']);
-//            unset($attr['category']);
-//        }
-//
-//        if(!empty($attr)){
-//            $this->assign('attr', $attr);
-//        }
 
         layout(false);
         $this->display('Widget/Form/uploadmultipleimgs');

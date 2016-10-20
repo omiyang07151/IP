@@ -16,17 +16,6 @@ class HotelController extends AdminBaseController {
         $this->jsonpajax($data);
     }
 
-    public function ajaxcity(){
-        layout(false);
-        $province_id = I('province_id');
-
-        $sysCityModel = D('SysCity');
-        $cityList = $sysCityModel->getCityList($province_id);
-        $this->assign('cityList', $cityList);
-
-        echo $this->fetch();
-    }
-
     public function add(){
 
         $sysProvinceModel = D('SysProvince');

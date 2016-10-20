@@ -16,4 +16,9 @@ return array(
     ),
     'ADMIN_DEFAULT_PAGE'=>1,
     'ADMIN_DEFAULT_SIZE'=>10,
+    'UPLOAD_DEFAULT'=>'',
+    'IMG_UPLOAD_URL' => '/admin/upload/image',
+    'MULTIIMG_UPLOAD_URL' => '/admin/upload/image',
+
+    'LOAD_EXT_CONFIG' => 'upload',
 );
