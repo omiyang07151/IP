@@ -1,0 +1,166 @@
+<div class="page-header">
+    <h1>
+        订单详情
+    </h1>
+</div>
+<div class="row">
+    <div class="widget-main no-padding">
+
+        <fieldset>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">订单编号</label>
+                {:$order['order_no']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">产品名称</label>
+                {:$order['product']['title']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">床型</label>
+                <?php if($order['bed_type']==1){echo '大床';}else{ echo '双床';}?>
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">房间数</label>
+                {:$order['room_num']}间
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">入住时间</label>
+                {:$order['checkin']} ~ {:$order['checkout']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">订单总额</label>
+                {:$order['total_price']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">订单状态</label>
+                <?php
+                if($order['cancel_flag']==1)
+                {
+                    echo "<span style='color: #ff0000'>用户取消</span>";
+                }
+                else if($order['status']==1)
+                {
+                    echo "<span style='color: #9AFF02'>已确认</span>";
+                }
+                else if($order['status']==2)
+                {
+                    echo "<span style='color: #ff0000'>客服取消</span>";
+                }
+                else if($order['pay_status']==0)
+                {
+                    echo "<span style='color: #921AFF'>待付款</span>";
+                }
+                else if($order['pay_status']==1)
+                {
+                    echo "<span style='color: green'>已支付</span>";
+                }
+                ?>
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">支付订单号</label>
+                {:$order['pay_no']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">支付时间</label>
+                {:$order['pay_time']}
+            </div>
+
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">联系人</label>
+                {:$order['linkman']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">联系电话</label>
+                {:$order['linkmobile']}
+            </div>
+            <div class="form-group">
+                <label for="order_no"  class="col-sm-2 control-label no-padding-left">身份信息</label>
+                <?php if(!empty($order['checkin_info'])):?>
+                <table style="width:600px;border: 1px solid #e5e5e5;">
+                    <?php foreach($order['checkin_info'] as $info):?>
+                    <tr>
+                        <th style="background-color: #e5e5e5;">姓名</th>
+                        <th>{:$info['name']}</th>
+                        <th style="background-color: #e5e5e5;">身份证</th>
+                        <th>{:$info['identify']}</th>
+                    </tr>
+                    <?php endforeach;?>
+                </table>
+                <?php endif;?>
+            </div>
+            <div style="clear: both;" />
+
+            <div class="form-actions">
+                <button class="btn" type="button" onclick="history.back();">返回</button>
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>
+
+
+<script language="javascript">
+    $(function(){
+        $('#Sys_province_id').change(function(){
+            val = $(this).val();
+            $.ajax({
+                url: '{:ADMIN_U("ajax/city")}',
+                type: 'POST',
+                dataType:"html",
+                jsonp: "callback",
+                data: "province_id="+val,
+                success: function(result){
+                    $('#city_sel_div').html(result);
+                    bindCityChange();
+                }
+            });
+        })
+
+        $('#price_group').on('click','.re_time_price',function(){
+            $(this).parent().remove();
+        });
+        insert_time_price_id = $("#price_group").find("#sp_price").length + 1;
+        $("#add_time_price").click(function () {
+            insert_time_price_id = insert_time_price_id + 1;
+
+            var insert_time_price_html = '<div class="controls" id="sp_price" style="padding-top:6px;padding-bottom: 6px;">';
+            insert_time_price_html += '时间日：';
+            insert_time_price_html += '<select name="sp_price[' + insert_time_price_id + '][start_weekday]" style="width:5em">';
+            insert_time_price_html += '<?php foreach($weekdays as $wd_k => $wd){ ?>';
+            insert_time_price_html += '<option value="<?php echo $wd_k;?>"><?php echo $wd;?></option>';
+            insert_time_price_html += '<?php } ?>';
+            insert_time_price_html += '</select>~';
+            insert_time_price_html += '<select name="sp_price[' + insert_time_price_id + '][end_weekday]" style="width:5em">';
+            insert_time_price_html += '<?php foreach($weekdays as $wd_k => $wd){ ?>';
+            insert_time_price_html += '<option value="<?php echo $wd_k;?>"><?php echo $wd;?></option>';
+            insert_time_price_html += '<?php } ?>';
+            insert_time_price_html += '</select>';
+            insert_time_price_html += ' 价格：';
+            insert_time_price_html += '<input name="sp_price[' + insert_time_price_id + '][new_price]" type="text" style="width:10em">';
+            insert_time_price_html += '<button class="btn btn-danger btn-xs re_time_price"  type="button"><i class="ace-icon glyphicon glyphicon-remove"></i></button>';
+            insert_time_price_html += '</div>';
+
+            $("#price_group").append(insert_time_price_html);
+        });
+    });
+    function bindCityChange(){
+        $('#Sys_city_id').change(function(){
+            val = $(this).val();
+            console.log("aaa"+val);
+            $.ajax({
+                url: '{:ADMIN_U("ajax/hotel")}',
+                type: 'POST',
+                dataType:"html",
+                jsonp: "callback",
+                data: "city_id="+val,
+                success: function(result){
+                    $('#hotel_sel_div').html(result);
+                }
+            });
+        })
+    }
+
+
+</script>
+
