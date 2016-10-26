@@ -29,6 +29,23 @@ class ProductMstModel extends BaseModel {
         return $product;
     }
 
+    public function processSpPrice($product){
+        $result = array();
+        if(!empty($product['sp_price'])){
+            $sp_price = json_decode($product['sp_price'], true);
+
+            for($i=1;$i<=7;$i++){
+                $result[$i] = $product['p_price'];
+            }
+            foreach($sp_price as $sp){
+                for($j=$sp['start_weekday'];$j<=$sp['end_weekday'];$j++){
+                    $result[$j] = $sp['new_price'];
+                }
+            }
+        }
+        return $result;
+    }
+
     public function updateSaledById($id, $num){
         $this->setInc('saled_num', $num);
     }

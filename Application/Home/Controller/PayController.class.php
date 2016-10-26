@@ -41,7 +41,8 @@ class PayController extends HomeBaseController {
 
         $productModel = D('ProductMst');
         $product = $productModel->getById($order['product_mst_id']);
-        $order['total_price'] = $product['p_price'] * $order['room_num'];
+        $product['sp_price'] = $productModel->processSpPrice($product);
+        $order['total_price'] = $product['sp_price'][date('N', strtotime($order['checkin']))] * $order['room_num'];
         $order['pay_status'] = 0;
 
         $order['id'] = $orderModel->insert($order);

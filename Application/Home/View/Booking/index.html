@@ -4,6 +4,7 @@
     <input type="hidden" name="checkin" id="checkin" value="<?php echo date('Y/m/d', strtotime($product['checkin_start']))?>"/>
     <input type="hidden" name="checkout" id="checkout" value="<?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?>"/>
     <input type="hidden" name="bed_type" id="bed_type" value="1"/>
+    <input type="hidden" name="p_price" id="p_price" value="<?php echo $product['sp_price'][date('N', strtotime($product['checkin_start']))]?>"/>
 <div class="main booking-main">
     <div class="top">
         <a class="nav" href="javascript:history.back();">
@@ -57,7 +58,7 @@
                 <span>预约数量</span>
                 <div class="fj-num">
                     <img class="btn-minus" src="__IMG__/order/minus.png"/>
-                    <input class="num-input" type="number" name="room_num" value="1"/>
+                    <input class="num-input" type="number" name="room_num" value="1" readonly/>
                     <img class="btn-add" src="__IMG__/order/add.png"/>
                 </div>
             </div>
@@ -94,9 +95,9 @@
 </div>
 <div class="booking-bot">
     <div class="booking-bot-left">
-        <p>总价￥</p><span class="booking-price" style="width:65%">{:$product['p_price']}</span>
+        <p>总价￥</p><span class="booking-price" style="width:65%">{:$product['sp_price'][date('N', strtotime($product['checkin_start']))]}</span>
 
-        <span class="shen">省￥<?php echo $product['market_price']-$product['p_price']?></span>
+        <span class="shen">省￥<?php echo $product['market_price']-$product['sp_price'][date('N', strtotime($product['checkin_start']))]?></span>
     </div>
     <div class="btn-pay" href="javascript:void(0)">去支付</div>
 </div>
@@ -146,11 +147,12 @@
                 }
                 for($i=1;$i<=$t;$i++){
                     $day_time = strtotime($checkin_start)+($i-1)*86400;
+                    $day_of_week = date('N', $day_time);
                     if($day_time==strtotime($product['checkin_start'])){
-                        echo '<li class="selday choose1" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
+                        echo '<li class="selday choose1" p-price="'.$product['sp_price'][$day_of_week].'" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
                     }
                     else if($day_time>strtotime($product['checkin_start']) && $day_time<=strtotime($product['checkin_end'])){
-                        echo '<li class="selday" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
+                        echo '<li class="selday" p-price="'.$product['sp_price'][$day_of_week].'" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
                     }
                     else {
                         echo '<li>'.$i.'</li>';
@@ -166,8 +168,16 @@
 </div>
 
 <script type="text/javascript">
-    var p_price = <?php echo $product['p_price']?>;
+    var p_price;
     var market_price = <?php echo $product['market_price']?>;
+    function recount(){
+        a = $('.num-input').val()
+        p_price = $('#p_price').val();
+        total = p_price*a;
+        discount = (market_price-p_price)*a;
+        $('.booking-price').html(total);
+        $('.shen').html('省￥'+discount);
+    }
     $(function(){
         $('.seldate').click(function(){
             $('.order-info-main').show();
@@ -183,6 +193,9 @@
             $('.btn-qr').hide();
             $('.booking-main').show();
             $('.booking-bot').show();
+
+            recount();
+
         })
         $('.btn-pay').click(function(){
             linkman = $('#linkman').val().trim();
@@ -229,10 +242,7 @@
             else{
                 a--;
                 $('.num-input').val(a)
-                total = p_price*a;
-                discount = (market_price-p_price)*a;
-                $('.booking-price').html(total);
-                $('.shen').html('省￥'+discount);
+                recount();
 
 
                 <?php if($product['is_need_id']==1):?>
@@ -247,14 +257,14 @@
 
         });
         $('.btn-add').click(function(){
+            p_price = $('#p_price').val();
+            console.log("price:"+p_price);
+
             var a = $('.num-input').val()
             a++;
             $('.num-input').val(a)
 
-            total = p_price*a;
-            discount = (market_price-p_price)*a;
-            $('.booking-price').html(total);
-            $('.shen').html('省￥'+discount);
+            recount();
 
             <?php if($product['is_need_id']==1):?>
             len = $('.lzr-info').length;

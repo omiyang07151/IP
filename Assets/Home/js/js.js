@@ -30,8 +30,10 @@ var myjs = {
             $(this).addClass('choose1');
             start = $(this).attr('data-s');
             end = $(this).attr('data-e');
+            p_price = $(this).attr('p-price');
             $('#checkin').val(start);
             $('#checkout').val(end);
+            $('#p_price').val(p_price);
 
             hotel_mst_id = $('#hotel_mst_id').val();
             if(hotel_mst_id!='0' && hotel_mst_id!=undefined){
