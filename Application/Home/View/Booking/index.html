@@ -1,11 +1,12 @@
 <form id="booking-form">
     <input type="hidden" name="product_mst_id" value="{:$product['id']}"/>
+    <input type="hidden" name="hotel_mst_id" id="hotel_mst_id" value="{:$product['hotel_mst_id']}"/>
     <input type="hidden" name="checkin" id="checkin" value="<?php echo date('Y/m/d', strtotime($product['checkin_start']))?>"/>
     <input type="hidden" name="checkout" id="checkout" value="<?php echo date('Y/m/d', strtotime($product['checkin_start'])+86400);?>"/>
     <input type="hidden" name="bed_type" id="bed_type" value="1"/>
 <div class="main booking-main">
     <div class="top">
-        <a class="nav" href="">
+        <a class="nav" href="javascript:history.back();">
             <img src="__IMG__/navi/navi-back.png"/>
         </a>
         <p>订单详情</p>
@@ -16,7 +17,7 @@
             <div class="booking-detail">{:$product['roomtype']} 1间/1晚</div>
         </div>
 
-
+        <?php if(!empty($product['hotel_mst_id'])):?>
         <span>入住信息</span>
         <div class="booking-white">
             <a href="javascript:void(0)" class="seldate">
@@ -42,6 +43,26 @@
                 </div>
             </div>
         </div>
+        <?php else:?>
+        <span>预约信息</span>
+        <div class="booking-white">
+            <a href="javascript:void(0)" class="seldate">
+                <div class=" booking-div booking-line">
+                    <span>预约日期</span>
+                    <img src="__IMG__/order/arrow.png"/>
+                    <p class="date_range"><?php echo date('Y/m/d', strtotime($product['checkin_start']));?></p>
+                </div>
+            </a>
+            <div class=" booking-div booking-line">
+                <span>预约数量</span>
+                <div class="fj-num">
+                    <img class="btn-minus" src="__IMG__/order/minus.png"/>
+                    <input class="num-input" type="number" name="room_num" value="1"/>
+                    <img class="btn-add" src="__IMG__/order/add.png"/>
+                </div>
+            </div>
+        </div>
+        <?php endif;?>
         <span>联系人信息</span>
 
         <div class="booking-white">
@@ -126,10 +147,10 @@
                 for($i=1;$i<=$t;$i++){
                     $day_time = strtotime($checkin_start)+($i-1)*86400;
                     if($day_time==strtotime($product['checkin_start'])){
-                        echo '<li class="selday choose1" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m.d', $day_time+86400).'">'.$i.'</li>';
+                        echo '<li class="selday choose1" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
                     }
                     else if($day_time>strtotime($product['checkin_start']) && $day_time<=strtotime($product['checkin_end'])){
-                        echo '<li class="selday" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m.d', $day_time+86400).'">'.$i.'</li>';
+                        echo '<li class="selday" data-s="'.date('Y/m/d', $day_time).'" data-e="'.date('Y/m/d', $day_time+86400).'">'.$i.'</li>';
                     }
                     else {
                         echo '<li>'.$i.'</li>';

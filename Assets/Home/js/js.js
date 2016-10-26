@@ -32,7 +32,15 @@ var myjs = {
             end = $(this).attr('data-e');
             $('#checkin').val(start);
             $('#checkout').val(end);
-            $('.date_range').html(start+' - '+end);
+
+            hotel_mst_id = $('#hotel_mst_id').val();
+            if(hotel_mst_id!='0' && hotel_mst_id!=undefined){
+                $('.date_range').html(start+' - '+end);
+            }
+            else {
+                $('.date_range').html(start);
+            }
+
         })
     },
     showLoading:function(msg){

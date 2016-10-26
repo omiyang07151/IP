@@ -29,51 +29,54 @@
         <div class="basic">
             {:$product['detail']}
         </div>
+        <?php if(!empty($hotel['lightspot'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/jdld.png"/>
             <div class="ld-txt">
-                <!--<p>1.花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧<br/><br/>-->
-                    <!--2.花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧啦<br/><br/>-->
-                    <!--3.花家山庄位于幽静的西子湖畔巴拉巴花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧啦</p>-->
-                <!--<img src="__IMG__/detail/img.png"/>-->
-                <!--<p>花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧<br/>-->
-                    <!--花家山庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧啦</p>-->
-                <!--<img src="__IMG__/detail/img1.png"/>-->
-                <!--<p>庄位于幽静的西子湖畔巴拉巴拉巴拉巴拉巴拉巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧啦巴，整个亭台楼阁，小桥水榭，吧啦吧啦吧啦吧啦</p>-->
-                <!--<img src="__IMG__/detail/img.png"/>-->
                 {:$hotel['lightspot']}
             </div>
         </div>
+        <?php endif;?>
+        <?php if(!empty($hotel['traffic'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/jtxx.png"/>
             <div class="jtxx">
                 {:$hotel['traffic']}
             </div>
         </div>
+        <?php endif;?>
+        <?php if(!empty($hotel['facility'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/jdss.png"/>
             <?php foreach($hotel['facility'] as $fa):?>
-            <div class="jdss"><img src="{:$fa}"/> </div>
+            <div class="jdss"><img src="__IMG__/hotel/icon{:$fa}.png"/> </div>
             <?php endforeach;?>
         </div>
+        <?php endif;?>
+        <?php if(!empty($hotel['around'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/zbss.png"/>
             <div class="jtxx">
                 {:$hotel['around']}
             </div>
         </div>
+        <?php endif;?>
+        <?php if(!empty($hotel['policy'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/jdzc.png"/>
             <div class="jtxx">
                 {:$hotel['policy']}
             </div>
         </div>
+        <?php endif;?>
+        <?php if(!empty($hotel['refund'])):?>
         <div class="detail-column">
             <img src="__IMG__/detail/tgzc.png"/>
             <div class="jtxx">
                 {:$hotel['refund']}
             </div>
         </div>
+        <?php endif;?>
     </div>
 </div>
 <div class="order-operate">
