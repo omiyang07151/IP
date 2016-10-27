@@ -23,11 +23,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="title"  class="col-sm-2 control-label no-padding-left">产品名称</label>
+                    <label for="title"  class="col-sm-2 control-label no-padding-left">产品主标题</label>
                     <input type="text" id="title" name="title" class="input-xlarge"  data-rule="required" value="<?=$data['title']?>">
                 </div>
                 <div class="form-group">
-                    <label for="intro" class="col-sm-2 control-label no-padding-left">产品简介</label>
+                    <label for="intro" class="col-sm-2 control-label no-padding-left">产品副标题</label>
                     <div style="float:left;width:750px;">
                         <textarea name="intro" style="width:100%;">{:$data['intro']}</textarea>
                     </div>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="detail" class="col-sm-2 control-label no-padding-left">产品详情</label>
+                    <label for="detail" class="col-sm-2 control-label no-padding-left">产品包含</label>
                     {:W('Form/richtext', ['detail',$data['detail']])}
                 </div>
 

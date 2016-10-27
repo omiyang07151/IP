@@ -26,6 +26,9 @@ class HotelController extends AdminBaseController {
         $facilityList = $sysParamsModel->getListByType('FACILITY_ICON');
         $this->assign('iconList', $facilityList);
 
+        $data['facility']=array('1','5','6','7','15');
+        $this->assign('data',$data);
+
         $this->display();
     }
 

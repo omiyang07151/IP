@@ -44,12 +44,12 @@
                     <label for="name"  class="col-sm-2 control-label no-padding-left">酒店名称</label>
                     <input type="text" id="name" name="name" class="input-xlarge"  data-rule="required" value="<?=$data['name']?>">
                 </div>
-                <div class="form-group">
-                    <label for="intro" class="col-sm-2 control-label no-padding-left">酒店简介</label>
-                    <div style="float:left;width:750px;">
-                        <textarea name="intro" style="width:100%;">{:$data['intro']}</textarea>
-                    </div>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="intro" class="col-sm-2 control-label no-padding-left">酒店简介</label>-->
+                    <!--<div style="float:left;width:750px;">-->
+                        <!--<textarea name="intro" style="width:100%;">{:$data['intro']}</textarea>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="form-group">
                     <label for="editorlightspot" class="col-sm-2 control-label no-padding-left">酒店亮点</label>
@@ -67,10 +67,10 @@
                     <?php endforeach;?>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="editoraround" class="col-sm-2 control-label no-padding-left">周边设施</label>
-                    {:W('Form/richtext', ['around',$data['around']])}
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="editoraround" class="col-sm-2 control-label no-padding-left">周边设施</label>-->
+                    <!--{:W('Form/richtext', ['around',$data['around']])}-->
+                <!--</div>-->
                 <div class="form-group">
                     <label for="editorpolicy" class="col-sm-2 control-label no-padding-left">酒店政策</label>
                     {:W('Form/richtext', ['policy',$data['policy']])}
