@@ -41,7 +41,7 @@ class HomeBaseController extends BaseController{
                 $wxUser = $wxUtil->getWxUserInfo();
 
                 $result = $this->saveUser($wxUser);
-                $this->user = $this->getUserFromWx();
+//                $this->user = $this->getUserFromWx();
                 session('User',$result);
             }
         }

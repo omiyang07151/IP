@@ -155,14 +155,11 @@
             </li>
 
 
-
-
             <li class="<?=CONTROLLER_NAME=="User"?"active":""?>">
             <a href="{:ADMIN_U('user')}">
                 <i class="menu-icon fa fa-list-alt"></i>
                 <span class="menu-text"> 用户管理 </span>
             </a>
-            <?=$navname=="user/index"?"<b class='arrow'></b>":""?>
             </li>
 
             <li class="<?=CONTROLLER_NAME=="Hotel"?"active":""?>">
@@ -170,46 +167,52 @@
                 <i class="menu-icon fa fa-home"></i>
                 <span class="menu-text"> 酒店管理 </span>
             </a>
-            <?=$navname=="user/index"?"<b class='arrow'></b>":""?>
             </li>
 
-            <li class="<?=CONTROLLER_NAME=="Product"?"active":""?>">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-desktop"></i>
-                <span class="menu-text"> 产品管理 </span>
+            <li class="<?=CONTROLLER_NAME=="Scene"?"active":""?>">
+            <a href="{:ADMIN_U('Scene')}">
+                <i class="menu-icon fa fa-picture-o"></i>
+                <span class="menu-text"> 景点管理 </span>
             </a>
-            <?=CONTROLLER_NAME=="Product"?"<b class='arrow'></b>":""?>
-            <ul class="submenu">
-                <li class="">
-                    <a href="{:ADMIN_U('product')}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        产品列表
-                    </a>
-                    <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
-                </li>
+            </li>
 
-                <li class="">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        添加单门票
-                    </a>
-                    <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
-                </li>
-                <li class="">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        添加单酒店
-                    </a>
-                    <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
-                </li>
-                <li class="">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        添加景+酒
-                    </a>
-                    <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
-                </li>
-            </ul>
+            <li class="hsub <?=CONTROLLER_NAME=="Product"?"active open":""?>">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-desktop"></i>
+                    <span class="menu-text"> 产品管理 </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <ul class="submenu">
+                    <li class="<?=CONTROLLER_NAME.'/'.ACTION_NAME=="Product/index"?"active":""?>">
+                        <a href="{:ADMIN_U('product')}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            产品列表
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="#">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            添加单门票
+                        </a>
+                        <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            添加单酒店
+                        </a>
+                        <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            添加景+酒
+                        </a>
+                        <?=in_array($actionname,$navarray['item']['subnav']['item'])?"<b class='arrow'></b>":""?>
+                    </li>
+                </ul>
             </li>
 
             <li class="<?=CONTROLLER_NAME=="Order"?"active":""?>">
